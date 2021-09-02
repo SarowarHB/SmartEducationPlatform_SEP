@@ -4,7 +4,7 @@
 		
         <div class="user-profile">
 			<div class="ulogo">
-				 <a href="index.html">
+				 <a href="{{route('dashboard')}}">
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
 						  <img src="{{asset('backend/images/logo-dark.png')}}" alt="">
@@ -34,7 +34,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('user.view')}}"><i class="ti-more"></i>View User</a></li>
-            <li><a href="calendar.html"><i class="ti-more"></i>Add User</a></li>
+            <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add User</a></li>
           </ul>
         </li> 
 		  

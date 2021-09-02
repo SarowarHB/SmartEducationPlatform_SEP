@@ -6,18 +6,18 @@
 <div class="content-wrapper">
     <div class="container-full">
         <!-- Content Header (Page header) -->
-        
+
         <!-- Main content -->
         <section class="content">
             <div class="row">
 
-               
+
                 <div class="col-12">
 
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">User List</h3>
-                            <a href="" style="float:right;" class="btn btn-rounded btn-success mb-5">Add User</a>
+                            <a href="{{route('user.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add User</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,32 +25,37 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th width="10%">SL No.</th>
                                             <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Role</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php($i=1)
+                                        @foreach($datas as $user)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>{{$i++}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->usertype}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>
+                                                <a href="" class="btn btn-info ">Edit</a>
+                                                <a href="" class=" btn btn-danger ">Delete</a>
+                                            </td>
+
+
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
+                                        <th width="10%">SL No.</th>
                                             <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Role</th>
+                                            <th>Email</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -60,7 +65,7 @@
                     </div>
                     <!-- /.box -->
 
-                   
+
                     <!-- /.box -->
                 </div>
                 <!-- /.col -->
