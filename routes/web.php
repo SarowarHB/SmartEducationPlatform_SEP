@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\backend\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +33,21 @@ Route::prefix('users')->group(function(){
     Route::get('/view',[UserController::class,'UserView'])->name('user.view');
     Route::get('/add',[UserController::class,'UserAdd'])->name('user.add');
     Route::post('/store',[UserController::class,'UserStore'])->name('user.store');
+    Route::get('/edit/{id}',[UserController::class,'usersEdit']);
+    Route::post('/update/{id}',[UserController::class,'usersUpdate']);
+
+    Route::get('/delete/{id}',[UserController::class,'UserDelete']);
 
 });
+
+Route::prefix('profile')->group(function(){
+
+    Route::get('/view',[ProfileController::class,'ProfileView'])->name('profile.view');
+    
+
+});
+
+
 
 
 

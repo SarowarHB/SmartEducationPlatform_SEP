@@ -41,8 +41,8 @@
                                             <td>{{$user->usertype}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>
-                                                <a href="" class="btn btn-info ">Edit</a>
-                                                <a href="" class=" btn btn-danger ">Delete</a>
+                                                <a href="{{url('users/edit/'.$user->id)}}" class="btn btn-info ">Edit</a>
+                                                <a href="{{url('users/delete/'.$user->id)}}" class=" btn btn-danger " id="delete">Delete</a>
                                             </td>
 
 
