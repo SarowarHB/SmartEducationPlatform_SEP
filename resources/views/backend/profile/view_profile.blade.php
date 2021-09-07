@@ -15,7 +15,7 @@
                         <!-- Add the bg color to the header using any of the bg-* classes -->
                         <div class="widget-user-header bg-black">
                             <h3 class="widget-user-username">User Name:{{$data->name}}</h3>
-                            <a href="{{route('user.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Edit Profile</a>
+                            <a href="{{route('edit.profile')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Edit Profile</a>
                             <h6 class="widget-user-desc">Desigation:{{$data->usertype}}</h6>
                             <h6 class="widget-user-desc">Email:{{$data->email}}</h6>
                         </div>

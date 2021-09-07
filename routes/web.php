@@ -43,7 +43,10 @@ Route::prefix('users')->group(function(){
 Route::prefix('profile')->group(function(){
 
     Route::get('/view',[ProfileController::class,'ProfileView'])->name('profile.view');
-    
+    Route::get('/edit',[ProfileController::class,'ProfileEdit'])->name('edit.profile');
+    Route::post('/store',[ProfileController::class,'ProfileStore'])->name('store.profile');
+    Route::get('/password/view',[ProfileController::class,'ViewPassword'])->name('edit.password');
+    Route::post('/password/update',[ProfileController::class,'UpdatePassword'])->name('store.password');
 
 });
 
