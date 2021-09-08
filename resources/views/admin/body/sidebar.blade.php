@@ -44,6 +44,8 @@ $route=Route::current()->getName();
             <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add User</a></li>
           </ul>
         </li> 
+
+		
 		  
         <li class="treeview {{($prefix=='/profile')?'active':''}}">
           <a href="#">
@@ -55,9 +57,21 @@ $route=Route::current()->getName();
           <ul class="treeview-menu">
             <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
             <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
-           
+           </ul>
         </li>
-		
+        
+        <li class="treeview {{($prefix=='/setups')?'active':''}}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Setup</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('class.view')}}"><i class="ti-more"></i>View Class</a></li>
+           
+           </ul>
+        </li>
       	  
 
         <li class="header nav-small-cap">User Interface</li>

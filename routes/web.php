@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\ProfileController;
+use App\Http\Controllers\Setup\SetupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,20 @@ Route::prefix('profile')->group(function(){
     Route::post('/password/update',[ProfileController::class,'UpdatePassword'])->name('store.password');
 
 });
+
+
+Route::prefix('setups')->group(function(){
+
+    Route::get('/view',[SetupController::class,'ClassView'])->name('class.view');
+    Route::get('/add',[SetupController::class,'ClassAdd'])->name('class.add');
+    Route::post('/store',[SetupController::class,'ClassStore'])->name('class.store');
+    Route::get('/edit/{id}',[SetupController::class,'ClassEdit']);
+    Route::post('/update/{id}',[SetupController::class,'ClassUpdate']);
+
+    Route::get('/delete/{id}',[SetupController::class,'ClassDelete']);
+
+});
+
 
 
 
