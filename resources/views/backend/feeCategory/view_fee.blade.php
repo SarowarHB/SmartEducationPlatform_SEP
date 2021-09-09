@@ -16,8 +16,8 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Batch List</h3>
-                            <a href="{{route('class.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add Batch</a>
+                            <h3 class="box-title">Fee Categoy List</h3>
+                            <a href="{{route('fee.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add User</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -26,7 +26,7 @@
                                     <thead>
                                         <tr>
                                             <th width="20%">SL No.</th>
-                                            <th width="40%">Batch Name</th>
+                                            <th width="40%">Fee Categoy Name</th>
                                             <th width="30%">Action</th>
                                         </tr>
                                     </thead>
@@ -35,10 +35,10 @@
                                         @foreach($data as $user)
                                         <tr>
                                             <td>{{$i++}}</td>
-                                            <td>{{$user->className}}</td>
+                                            <td>{{$user->feeName}}</td>
                                             <td>
-                                                <a href="{{url('setups/edit/class/'.$user->id)}}" class="btn btn-info ">Edit</a>
-                                                <a href="{{url('setups/delete/class/'.$user->id)}}" class=" btn btn-danger " id="delete">Delete</a>
+                                                <a href="{{url('setups/edit/fee/'.$user->id)}}" class="btn btn-info ">Edit</a>
+                                                <a href="{{url('setups/delete/fee/'.$user->id)}}" class=" btn btn-danger " id="delete">Delete</a>
                                             </td>
 
 
@@ -48,7 +48,7 @@
                                     <tfoot>
                                     <tr>
                                             <th width="20%">SL No.</th>
-                                            <th width="50%">Batch Name</th>
+                                            <th width="50%">Fee Categoy Name</th>
                                             <th width="30%">Action</th>
                                         </tr>
                                     </tfoot>

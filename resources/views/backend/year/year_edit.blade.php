@@ -11,7 +11,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Update Class</h3>
+                    <h3 class="box-title">Update Year</h3>
 
                 </div>
                 <!-- /.box-header -->
@@ -20,7 +20,7 @@
                         <div class="col">
 
 
-                            <form action="{{url('setups/update/class/'.$data->id)}}" method="post" >
+                            <form action="{{url('setups/update/year/'.$data->id)}}" method="post" >
                                 @csrf
                                 <div class="row">
                                     <div class="col-6">
@@ -29,10 +29,10 @@
 
                                      
                                         <div class="form-group">
-                                            <h5>Class Name <span class="text-danger">*</span></h5>
+                                            <h5>Year Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="className" class="form-control" required
-                                                    data-validation-required-message="This field is required" value="{{$data->className}}" > </div>
+                                                <input type="text" name="yearName" class="form-control" required
+                                                    data-validation-required-message="This field is required" value="{{$data->yearName}}" > </div>
 
                                         </div>
 

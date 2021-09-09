@@ -5,6 +5,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\Setup\SetupController;
+use App\Http\Controllers\Setup\StudentYearController;
+use App\Http\Controllers\Setup\DepartmentController;
+use App\Http\Controllers\Setup\FeeCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,10 +60,41 @@ Route::prefix('setups')->group(function(){
     Route::get('/view',[SetupController::class,'ClassView'])->name('class.view');
     Route::get('/add',[SetupController::class,'ClassAdd'])->name('class.add');
     Route::post('/store',[SetupController::class,'ClassStore'])->name('class.store');
-    Route::get('/edit/{id}',[SetupController::class,'ClassEdit']);
-    Route::post('/update/{id}',[SetupController::class,'ClassUpdate']);
+    Route::get('/edit/class/{id}',[SetupController::class,'ClassEdit']);
+    Route::post('/update/class/{id}',[SetupController::class,'ClassUpdate']);
+    Route::get('/delete/class/{id}',[SetupController::class,'ClassDelete']);
 
-    Route::get('/delete/{id}',[SetupController::class,'ClassDelete']);
+    //Student Year 
+    Route::get('/view/year',[StudentYearController::class,'YearView'])->name('year.view');
+    Route::get('/add/year',[StudentYearController::class,'YearAdd'])->name('year.add');
+    Route::post('/store/year',[StudentYearController::class,'YearStore'])->name('year.store');
+    Route::get('/edit/year/{id}',[StudentYearController::class,'YearEdit']);
+    Route::post('/update/year/{id}',[StudentYearController::class,'YearUpdate']);
+    Route::get('/delete/year/{id}',[StudentYearController::class,'YearDelete']);
+
+    //Department 
+    Route::get('/view/department',[DepartmentController::class,'DepartmentView'])->name('department.view');
+    Route::get('/add/department',[DepartmentController::class,'DepartmentAdd'])->name('department.add');
+    Route::post('/store/department',[DepartmentController::class,'DepartmentStore'])->name('department.store');
+    Route::get('/edit/department/{id}',[DepartmentController::class,'DepartmentEdit']);
+    Route::post('/update/department/{id}',[DepartmentController::class,'DepartmentUpdate']);
+    Route::get('/delete/department/{id}',[DepartmentController::class,'DepartmentDelete']);
+
+    //Fee Category
+    Route::get('/view/fee',[FeeCategoryController::class,'FeeView'])->name('fee.view');
+    Route::get('/add/fee',[FeeCategoryController::class,'FeeAdd'])->name('fee.add');
+    Route::post('/store/fee',[FeeCategoryController::class,'FeeStore'])->name('fee.store');
+    Route::get('/edit/fee/{id}',[FeeCategoryController::class,'FeeEdit']);
+    Route::post('/update/fee/{id}',[FeeCategoryController::class,'FeeUpdate']);
+    Route::get('/delete/fee/{id}',[FeeCategoryController::class,'FeeDelete']);
+
+    //Fee Category Amount Field
+    /*Route::get('/view/fee',[FeeCategoryController::class,'FeeView'])->name('fee.amount.view');
+    Route::get('/add/fee',[FeeCategoryController::class,'FeeAdd'])->name('fee.add');
+    Route::post('/store/fee',[FeeCategoryController::class,'FeeStore'])->name('fee.store');
+    Route::get('/edit/fee/{id}',[FeeCategoryController::class,'FeeEdit']);
+    Route::post('/update/fee/{id}',[FeeCategoryController::class,'FeeUpdate']);
+    Route::get('/delete/fee/{id}',[FeeCategoryController::class,'FeeDelete']);*/
 
 });
 

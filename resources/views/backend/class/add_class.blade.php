@@ -11,7 +11,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Add Class</h3>
+                    <h3 class="box-title">Add Batch</h3>
 
                 </div>
                 <!-- /.box-header -->
@@ -29,7 +29,7 @@
 
                                      
                                         <div class="form-group">
-                                            <h5>Class Name <span class="text-danger">*</span></h5>
+                                            <h5>Batch Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <input type="text" name="className" class="form-control" required
                                                     data-validation-required-message="This field is required"> </div>

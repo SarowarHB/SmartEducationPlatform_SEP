@@ -64,7 +64,7 @@ class SetupController extends Controller
 
         $notification= array(
             'message' =>'Class Deleted successfully',
-            'alert-type'=>'success'
+            'alert-type'=>'error'
         );
        
         return Redirect()->route('class.view')->with($notification);

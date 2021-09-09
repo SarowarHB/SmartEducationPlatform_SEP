@@ -49,7 +49,7 @@ $route=Route::current()->getName();
 		  
         <li class="treeview {{($prefix=='/profile')?'active':''}}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Profile</span>
+            <i data-feather="mail"></i> <span>Manage Profile</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -62,13 +62,17 @@ $route=Route::current()->getName();
         
         <li class="treeview {{($prefix=='/setups')?'active':''}}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Setup</span>
+            <i data-feather="grid"></i> <span>Setup Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('class.view')}}"><i class="ti-more"></i>View Class</a></li>
+            <li><a href="{{route('class.view')}}"><i class="ti-more"></i>View Batch</a></li>
+            <li><a href="{{route('year.view')}}"><i class="ti-more"></i>Student Year</a></li>
+            <li><a href="{{route('department.view')}}"><i class="ti-more"></i>Department</a></li>
+            <li><a href="{{route('fee.view')}}"><i class="ti-more"></i>Fee Category</a></li>
+            <li><a href=""><i class="ti-more"></i>Fee Category Amount</a></li>
            
            </ul>
         </li>
@@ -85,10 +89,10 @@ $route=Route::current()->getName();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-            <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-            <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
+            <li><a href=""><i class="ti-more"></i>Alerts</a></li>
+            <li><a href=""><i class="ti-more"></i>Badge</a></li>
+            <li><a href=""><i class="ti-more"></i>Buttons</a></li>
+            <li><a href=""><i class="ti-more"></i>Sliders</a></li>
             
           </ul>
         </li>
