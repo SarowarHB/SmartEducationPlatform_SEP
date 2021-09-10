@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-use Image;
 
 class FeeCategoryController extends Controller
 {
