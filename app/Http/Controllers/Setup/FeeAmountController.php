@@ -64,8 +64,65 @@ class FeeAmountController extends Controller
         $class=StudentClass::all();
         $department=Department::all();
 
-        return view('backend.feeAmount.add_feeAmount',compact('category','class','department','categoryAmount'));
+        return view('backend.feeAmount.edit_feeAmount',compact('category','class','department','categoryAmount'));
 
 
+    }
+
+
+    public function FeeAmountUpdate(Request $request,$fee_category_id){
+
+
+        if($request->class_id==NULL){
+
+            $notification= array(
+                'message' =>'Sorry You Don not Updated any Velue',
+                'alert-type'=>'error'
+            );
+           
+            return Redirect()->Route('fee.amount.edit',$fee_category_id)->with($notification);
+
+        }
+        else{
+
+            $counter=count($request->class_id);
+
+       
+            FeeAmountCategory::where('fee_category_id',$fee_category_id)->delete();
+
+            for($i=0;$i<$counter;$i++){
+
+                $feeAmount = new FeeAmountCategory();
+
+                $feeAmount->fee_category_id= $request->fee_category_id;
+                $feeAmount->department_id=$request->department_id[$i];
+                $feeAmount->class_id=$request->class_id[$i];
+                $feeAmount->amount=$request->amount[$i];
+                $feeAmount->save();
+
+
+            
+        }
+
+        $notification= array(
+            'message' =>'Fee Amount Updated successfully',
+            'alert-type'=>'success'
+        );
+       
+        return Redirect()->route('fee.amount.view')->with($notification);
+
+        }
+    }
+
+
+    public function FeeAmountDetails($fee_category_id){
+        $data=FeeAmountCategory::where('fee_category_id',$fee_category_id)->
+        orderBy('class_id','asc')->get();
+
+        $category=FeeCategory::all();
+        $class=StudentClass::all();
+        $department=Department::all();
+
+        return view('backend.feeAmount.view_feeDetails',compact('category','class','department','data'));
     }
 }

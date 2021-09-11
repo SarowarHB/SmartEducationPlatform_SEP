@@ -16,8 +16,8 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Fee Amount List</h3>
-                            <a href="{{route('feeAmount.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add FeeAmount</a>
+                            <h3 class="box-title">Fee Details</h3>
+                         
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,9 +25,10 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th width="20%">SL No.</th>
-                                            <th width="40%">Fee Category Name</th>
-                                            <th width="30%">Action</th>
+                                            <th width="10%">SL No.</th>
+                                            <th width="20%">Class Name</th>
+                                            <th width="50%">Department Name</th>
+                                            <th width="20%">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -35,11 +36,9 @@
                                         @foreach($data as $user)
                                         <tr>
                                             <td>{{$i++}}</td>
-                                            <td>{{$user['fee_category']['feeName']}}</td>
-                                            <td>
-                                                <a href="{{url('setups/edit/fee/amount/'.$user->fee_category_id)}}" class="btn btn-info ">Edit</a>
-                                                <a href="{{url('setups/details/fee/amount/'.$user->fee_category_id)}}" class=" btn btn-primary" id="Details">Details</a>
-                                            </td>
+                                            <td>{{$user['student_class']['className']}}</td>
+                                            <td>{{$user['student_department']['departmentName']}}</td>
+                                            <td>{{$user->amount}}</td>
 
 
                                         </tr>
@@ -47,9 +46,10 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                            <th width="20%">SL No.</th>
-                                            <th width="50%">Fee Category Name</th>
-                                            <th width="30%">Action</th>
+                                    <th width="10%">SL No.</th>
+                                            <th width="20%">Class Name</th>
+                                            <th width="50%">Department Name</th>
+                                            <th width="20%">Amount</th>
                                         </tr>
                                     </tfoot>
                                 </table>
