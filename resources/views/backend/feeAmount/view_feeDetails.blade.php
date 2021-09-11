@@ -21,6 +21,8 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+
+                        <h4><strong>Fee Category:</strong>{{$data['0']['fee_category']['feeName']}}</h4>
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
