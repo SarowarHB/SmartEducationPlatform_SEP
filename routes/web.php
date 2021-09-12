@@ -9,6 +9,8 @@ use App\Http\Controllers\Setup\StudentYearController;
 use App\Http\Controllers\Setup\DepartmentController;
 use App\Http\Controllers\Setup\FeeCategoryController;
 use App\Http\Controllers\Setup\FeeAmountController;
+use App\Http\Controllers\Setup\ExamTypeController;
+use App\Http\Controllers\Setup\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +98,24 @@ Route::prefix('setups')->group(function(){
     Route::get('/edit/fee/amount/{fee_category_id}',[FeeAmountController::class,'FeeAmountEdit'])->name('fee.amount.edit');
     Route::post('/update/fee/amount/{fee_category_id}',[FeeAmountController::class,'FeeAmountUpdate']);
     Route::get('/details/fee/amount/{fee_category_id}',[FeeAmountController::class,'FeeAmountDetails']);
+
+
+    //ExamType Controller
+    Route::get('/view/examType',[ExamTypeController::class,'examTypeView'])->name('examType.view');
+    Route::get('/add/examType',[ExamTypeController::class,'examTypeAdd'])->name('examType.add');
+    Route::post('/store/examType',[ExamTypeController::class,'examTypeStore'])->name('examType.store');
+    Route::get('/edit/examType/{id}',[ExamTypeController::class,'examTypeEdit']);
+    Route::post('/update/examType/{id}',[ExamTypeController::class,'examTypeUpdate']);
+    Route::get('/delete/examType/{id}',[ExamTypeController::class,'examTypeDelete']);
+
+
+    //Subject Controller
+    Route::get('/view/subject',[SubjectController::class,'subjectView'])->name('subject.view');
+    Route::get('/add/subject',[SubjectController::class,'subjectAdd'])->name('subject.add');
+    Route::post('/store/subject',[SubjectController::class,'subjectStore'])->name('subject.store');
+    Route::get('/edit/subject/{id}',[SubjectController::class,'subjectEdit']);
+    Route::post('/update/subject/{id}',[SubjectController::class,'subjectUpdate']);
+    Route::get('/delete/subject/{id}',[SubjectController::class,'subjectDelete']);
 
 });
 
