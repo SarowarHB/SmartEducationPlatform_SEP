@@ -117,6 +117,15 @@ Route::prefix('setups')->group(function(){
     Route::post('/update/subject/{id}',[SubjectController::class,'subjectUpdate']);
     Route::get('/delete/subject/{id}',[SubjectController::class,'subjectDelete']);
 
+
+    //Fee Category Amount Field
+    Route::get('/view/assign/subject',[AssignSubjectController::class,'AssignSubjectView'])->name('assign.subject.view');
+    // Route::get('/add/assign/subject',[AssignSubjectController::class,'AssignSubjectAdd'])->name('assign.subject.add');
+    // Route::post('/store/assign/subject',[AssignSubjectController::class,'AssignSubjectStore'])->name('assign.subject.amount');
+    // Route::get('/edit/assign/subject/{fee_category_id}',[AssignSubjectController::class,'AssignSubjectEdit'])->name('assign.subject.edit');
+    // Route::post('/update/assign/subject/{fee_category_id}',[AssignSubjectController::class,'AssignSubjectUpdate']);
+    // Route::get('/details/assign/subject/{fee_category_id}',[AssignSubjectController::class,'AssignSubjectDetails']);
+
 });
 
 
