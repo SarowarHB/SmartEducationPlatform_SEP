@@ -7,17 +7,21 @@
     <div class="container-full">
         <!-- Content Header (Page header) -->
 
+
         <!-- Main content -->
         <section class="content">
             <div class="row">
+
 
 
                 <div class="col-12">
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Fee Amount List</h3>
-                            <a href="{{route('feeAmount.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add FeeAmount</a>
+                            <h3 class="box-title">Assign Subject List</h3>
+                            <a href="{{route('assign.subject.add')}}" style="float: right;"
+                                class="btn btn-rounded btn-success mb-5"> Add Assign Subject</a>
+
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -25,32 +29,31 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th width="20%">SL No.</th>
-                                            <th width="40%">Fee Category Name</th>
-                                            <th width="30%">Action</th>
+                                            <th width="5%">SL</th>
+                                            <th>Class Name</th>
+                                            <th width="25%">Action</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php($i=1)
-                                        @foreach($data as $user)
+                                        @foreach($data as $key => $assign )
                                         <tr>
-                                            <td>{{$i++}}</td>
-                                            <td>{{$user['fee_category']['feeName']}}</td>
+                                            <td>{{ $key+1 }}</td>
+                                            <td> {{$assign['student_department']['departmentName'] }}</td>
                                             <td>
-                                                <a href="{{url('setups/edit/fee/amount/'.$user->fee_category_id)}}" class="btn btn-info ">Edit</a>
-                                                <a href="{{url('setups/details/fee/amount/'.$user->fee_category_id)}}" class=" btn btn-primary" id="Details">Details</a>
-                                            </td>
+                                                <a href="{{ route('assign.subject.edit',$assign->department_id ) }}"
+                                                    class="btn btn-info">Edit</a>
+                                                <a href="{{ route('assign.subject.details',$assign->department_id ) }}"
+                                                    class="btn btn-primary">Details</a>
 
+                                            </td>
 
                                         </tr>
                                         @endforeach
+
                                     </tbody>
                                     <tfoot>
-                                    <tr>
-                                            <th width="20%">SL No.</th>
-                                            <th width="50%">Fee Category Name</th>
-                                            <th width="30%">Action</th>
-                                        </tr>
+
                                     </tfoot>
                                 </table>
                             </div>
@@ -60,7 +63,6 @@
                     <!-- /.box -->
 
 
-                    <!-- /.box -->
                 </div>
                 <!-- /.col -->
             </div>
@@ -70,4 +72,9 @@
 
     </div>
 </div>
+
+
+
+
+
 @endsection

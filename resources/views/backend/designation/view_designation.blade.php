@@ -16,21 +16,18 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Fee Details</h3>
-                         
+                            <h3 class="box-title">Designation List</h3>
+                            <a href="{{route('designation.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add Designation</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-
-                        <h4><strong>Fee Category:</strong>{{$data['0']['fee_category']['feeName']}}</h4>
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th width="10%">SL No.</th>
-                                            <th width="20%">Class Name</th>
-                                            <th width="50%">Department Name</th>
-                                            <th width="20%">Amount/Credit</th>
+                                            <th width="20%">SL No.</th>
+                                            <th width="40%">Designation Type</th>
+                                            <th width="30%">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,9 +35,11 @@
                                         @foreach($data as $user)
                                         <tr>
                                             <td>{{$i++}}</td>
-                                            <td>{{$user['student_class']['className']}}</td>
-                                            <td>{{$user['student_department']['departmentName']}}</td>
-                                            <td>{{$user->amount}}</td>
+                                            <td>{{$user->designationName}}</td>
+                                            <td>
+                                                <a href="{{url('setups/edit/designation/'.$user->id)}}" class="btn btn-info ">Edit</a>
+                                                <a href="{{url('setups/delete/designation/'.$user->id)}}" class=" btn btn-danger " id="delete">Delete</a>
+                                            </td>
 
 
                                         </tr>
@@ -48,10 +47,9 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                    <th width="10%">SL No.</th>
-                                            <th width="20%">Class Name</th>
-                                            <th width="50%">Department Name</th>
-                                            <th width="20%">Amount/Credit</th>
+                                            <th width="20%">SL No.</th>
+                                            <th width="40%">Designation Type</th>
+                                            <th width="30%">Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>

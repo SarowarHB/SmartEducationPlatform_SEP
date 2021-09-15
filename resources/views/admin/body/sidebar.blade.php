@@ -34,6 +34,7 @@ $route=Route::current()->getName();
         <li class="treeview {{ ($prefix =='/users')?'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
+            
             <span>Manage User</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -76,6 +77,7 @@ $route=Route::current()->getName();
             <li><a href="{{route('examType.view')}}"><i class="ti-more"></i>Exam Type</a></li>
             <li><a href="{{route('subject.view')}}"><i class="ti-more"></i>All subjects</a></li>
             <li><a href="{{route('assign.subject.view')}}"><i class="ti-more"></i>Assign subjects</a></li>
+            <li><a href="{{route('designation.view')}}"><i class="ti-more"></i>Designation</a></li>
            
            </ul>
         </li>

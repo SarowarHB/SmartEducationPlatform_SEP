@@ -11,6 +11,8 @@ use App\Http\Controllers\Setup\FeeCategoryController;
 use App\Http\Controllers\Setup\FeeAmountController;
 use App\Http\Controllers\Setup\ExamTypeController;
 use App\Http\Controllers\Setup\SubjectController;
+use App\Http\Controllers\Setup\AssignSubjectController;
+use App\Http\Controllers\Setup\DesignationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,12 +121,22 @@ Route::prefix('setups')->group(function(){
 
 
     //Fee Category Amount Field
+           
     Route::get('/view/assign/subject',[AssignSubjectController::class,'AssignSubjectView'])->name('assign.subject.view');
-    // Route::get('/add/assign/subject',[AssignSubjectController::class,'AssignSubjectAdd'])->name('assign.subject.add');
-    // Route::post('/store/assign/subject',[AssignSubjectController::class,'AssignSubjectStore'])->name('assign.subject.amount');
-    // Route::get('/edit/assign/subject/{fee_category_id}',[AssignSubjectController::class,'AssignSubjectEdit'])->name('assign.subject.edit');
-    // Route::post('/update/assign/subject/{fee_category_id}',[AssignSubjectController::class,'AssignSubjectUpdate']);
-    // Route::get('/details/assign/subject/{fee_category_id}',[AssignSubjectController::class,'AssignSubjectDetails']);
+    Route::get('/add/assign/subject',[AssignSubjectController::class,'AssignSubjectAdd'])->name('assign.subject.add');
+    Route::post('/store/assign/subject',[AssignSubjectController::class,'AssignSubjectStore'])->name('store.assign.subject');
+    Route::get('/edit/assign/subject/{department_id}',[AssignSubjectController::class,'AssignSubjectEdit'])->name('assign.subject.edit');
+    Route::post('/update/assign/subject/{department_id}',[AssignSubjectController::class,'AssignSubjectUpdate'])->name('update.assign.subject');
+    Route::get('/details/assign/subject/{department_id}',[AssignSubjectController::class,'AssignSubjectDetails'])->name('assign.subject.details');
+
+
+    //Designation Controller
+    Route::get('/view/designation',[DesignationController::class,'designationView'])->name('designation.view');
+    Route::get('/add/designation',[DesignationController::class,'designationAdd'])->name('designation.add');
+    Route::post('/store/designation',[DesignationController::class,'designationStore'])->name('designation.store');
+    Route::get('/edit/designation/{id}',[DesignationController::class,'designationEdit']);
+    Route::post('/update/designation/{id}',[DesignationController::class,'designationUpdate']);
+    Route::get('/delete/designation/{id}',[DesignationController::class,'designationDelete']);
 
 });
 
