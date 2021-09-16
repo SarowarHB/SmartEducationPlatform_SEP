@@ -34,8 +34,8 @@
                                                     <option value="" disabled="" selected="">Select Role</option>
                                                     <option value="Admin">Admin</option>
                                                     <option value="User">User</option>
-                                                    <option value="User">Acountent</option>
-                                                    <option value="User">Teacher</option>
+                                                    <option value="Acountent">Acountent</option>
+                                                    <option value="Teacher">Teacher</option>
                                                 </select>
                                             </div>
                                         </div>

@@ -31,6 +31,7 @@ $route=Route::current()->getName();
           </a>
         </li>  
 		
+          <!-- /.User Management--->
         <li class="treeview {{ ($prefix =='/users')?'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
@@ -47,10 +48,11 @@ $route=Route::current()->getName();
         </li> 
 
 		
+          <!-- /.Profile Management--->
 		  
         <li class="treeview {{($prefix=='/profile')?'active':''}}">
           <a href="#">
-            <i data-feather="mail"></i> <span>Manage Profile</span>
+            <i data-feather="grid"></i> <span>Manage Profile</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
@@ -60,6 +62,8 @@ $route=Route::current()->getName();
             <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
            </ul>
         </li>
+
+          <!-- /.Setup Management--->
         
         <li class="treeview {{($prefix=='/setups')?'active':''}}">
           <a href="#">
@@ -78,6 +82,29 @@ $route=Route::current()->getName();
             <li><a href="{{route('subject.view')}}"><i class="ti-more"></i>All subjects</a></li>
             <li><a href="{{route('assign.subject.view')}}"><i class="ti-more"></i>Assign subjects</a></li>
             <li><a href="{{route('designation.view')}}"><i class="ti-more"></i>Designation</a></li>
+           
+           </ul>
+        </li>
+
+  <!-- /.Student Management--->
+
+        <li class="treeview {{($prefix=='/setups')?'active':''}}">
+          <a href="#">
+            <i data-feather="package"></i> <span>Students Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('student.registation.view')}}"><i class="ti-more"></i>Student Registation</a></li>
+            <!-- <li><a href="{{route('year.view')}}"><i class="ti-more"></i>Student Year</a></li>
+            <li><a href="{{route('department.view')}}"><i class="ti-more"></i>Department</a></li>
+            <li><a href="{{route('fee.view')}}"><i class="ti-more"></i>Fee Category</a></li>
+            <li><a href="{{route('fee.amount.view')}}"><i class="ti-more"></i>Fee Category Amount</a></li>
+            <li><a href="{{route('examType.view')}}"><i class="ti-more"></i>Exam Type</a></li>
+            <li><a href="{{route('subject.view')}}"><i class="ti-more"></i>All subjects</a></li>
+            <li><a href="{{route('assign.subject.view')}}"><i class="ti-more"></i>Assign subjects</a></li>
+            <li><a href="{{route('designation.view')}}"><i class="ti-more"></i>Designation</a></li> -->
            
            </ul>
         </li>

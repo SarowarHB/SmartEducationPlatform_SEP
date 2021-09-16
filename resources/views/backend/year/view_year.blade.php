@@ -17,7 +17,7 @@
                     <div class="box">
                         <div class="box-header with-border">
                             <h3 class="box-title">Year List</h3>
-                            <a href="{{route('year.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add User</a>
+                            <a href="{{route('year.add')}}" style="float:right;" class="btn btn-rounded btn-success mb-5">Add Year</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

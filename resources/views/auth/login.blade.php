@@ -29,8 +29,8 @@
                 <div class="row justify-content-center no-gutters">
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="content-top-agile p-10">
-                            <h2 class="text-white">Get started with Us</h2>
-                            <p class="text-white-50">Sign in to start your session</p>
+                            <h2 class="text-white">Admin Login</h2>
+                            <p class="text-white-50"> Get started with Us</p>
                         </div>
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
                             @if (session('status'))
@@ -90,23 +90,8 @@
                                 </div>
                             </form>
 
-                            <div class="text-center text-white">
-                                <p class="mt-20">- Sign With -</p>
-                                <p class="gap-items-2 mb-20">
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i
-                                            class="fa fa-facebook"></i></a>
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i
-                                            class="fa fa-twitter"></i></a>
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i
-                                            class="fa fa-google-plus"></i></a>
-                                    <a class="btn btn-social-icon btn-round btn-outline btn-white" href="#"><i
-                                            class="fa fa-instagram"></i></a>
-                                </p>
-                            </div>
-
-                            <div class="text-center">
-                                <p class="mt-15 mb-0 text-white">Don't have an account? <a href="{{route('register') }}">Sign Up</a></p>
-                            </div>
+                            
+                           
                         </div>
                     </div>
                 </div>

@@ -72,12 +72,11 @@
                                             <h5>User Role Select <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <select name="usertype" id="select" required class="form-control">
-                                                    <option value="" disabled="" selected="">Select Role</option>
-                                                    <option value="Admin"
-                                                        {{($data->usertype == "Admin" ? "selected" : "")}}>Admin
-                                                    </option>
-                                                    <option value="User"
-                                                        {{($data->usertype == "User" ? "selected" : "")}}>User</option>
+                                                <option value="" disabled="" selected="">Select Role</option>
+                                                    <option value="Admin" {{($data->usertype == "Admin" ? "selected" : "")}}>Admin</option>
+                                                    <option value="User" {{($data->usertype == "User" ? "selected" : "")}} >User</option>
+                                                    <option value="Acountent" {{($data->usertype == "Acountent" ? "selected" : "")}} >Acountent</option>
+                                                    <option value="Teacher" {{($data->usertype == "Teacher" ? "selected" : "")}}>Teacher</option>
                                                 </select>
                                             </div>
                                         </div>

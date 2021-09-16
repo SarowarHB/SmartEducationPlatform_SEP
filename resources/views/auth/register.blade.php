@@ -31,7 +31,16 @@
                         <div class="content-top-agile p-10">
                             <h2 class="text-white">Get started with Us</h2>
                             <p class="text-white-50">Register a new membership</p>
+                          
                         </div>
+                        <div class="input-group-prepend text-white">
+                                            
+                                            <x-jet-validation-errors class="mb-4" />
+                                               
+                                            
+
+                                                    
+                                        </div>
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
 
 
@@ -41,8 +50,12 @@
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text bg-transparent text-white"><i
-                                                    class="ti-user"></i></span>
+                                            <span class="input-group-text bg-transparent text-white">
+                                 
+                                                <i class="ti-user"></i>
+                                            </span>
+
+                                                    
                                         </div>
                                         <input type="text"
                                             class="form-control pl-15 bg-transparent text-white plc-white" id="name" 

@@ -13,6 +13,7 @@ use App\Http\Controllers\Setup\ExamTypeController;
 use App\Http\Controllers\Setup\SubjectController;
 use App\Http\Controllers\Setup\AssignSubjectController;
 use App\Http\Controllers\Setup\DesignationController;
+use App\Http\Controllers\backend\Student\StudentRegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,8 @@ Route::prefix('users')->group(function(){
 
 });
 
+//Profile Routes
+
 Route::prefix('profile')->group(function(){
 
     Route::get('/view',[ProfileController::class,'ProfileView'])->name('profile.view');
@@ -59,7 +62,7 @@ Route::prefix('profile')->group(function(){
 
 });
 
-
+//Setups Routes
 Route::prefix('setups')->group(function(){
 
     Route::get('/view',[SetupController::class,'ClassView'])->name('class.view');
@@ -137,6 +140,19 @@ Route::prefix('setups')->group(function(){
     Route::get('/edit/designation/{id}',[DesignationController::class,'designationEdit']);
     Route::post('/update/designation/{id}',[DesignationController::class,'designationUpdate']);
     Route::get('/delete/designation/{id}',[DesignationController::class,'designationDelete']);
+
+});
+
+//Student Routes
+Route::prefix('students')->group(function(){
+
+    Route::get('/reg/view',[StudentRegController::class,'RegView'])->name('student.registation.view');
+    // Route::get('/add',[UserController::class,'UserAdd'])->name('user.add');
+    // Route::post('/store',[UserController::class,'UserStore'])->name('user.store');
+    // Route::get('/edit/{id}',[UserController::class,'usersEdit']);
+    // Route::post('/update/{id}',[UserController::class,'usersUpdate']);
+
+    // Route::get('/delete/{id}',[UserController::class,'UserDelete']);
 
 });
 
