@@ -13,8 +13,9 @@ use Image;
 class UserController extends Controller
 {
     public function UserView(){
-        $datas=User::all();
-        return view('backend.user.view_user',compact('datas'));
+        
+        $data['datas'] = User::where('usertype','Admin')->get();
+    	return view('backend.user.view_user',$data);
 
     }
 
@@ -29,13 +30,15 @@ class UserController extends Controller
             'name'=>'required'
         ]);
 
-        User::insert([
-            'name' => $request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-            'usertype'=>$request->usertype,
-            'created_at'=>Carbon::now()
-        ]);
+        $data = new User();
+        $code = rand(00000,99999);
+    	$data->usertype = 'Admin';
+        $data->role = $request->role;
+    	$data->name = $request->name;
+    	$data->email = $request->email;
+    	$data->password = bcrypt($code);
+        $data->code = $code;
+    	$data->save();
 
         $notification= array(
             'message' =>'User Inserted successfully',
@@ -52,13 +55,11 @@ class UserController extends Controller
     
     public function usersUpdate(Request $request,$id){
 
-        User::find($id)->update([
-            'name' => $request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-            'usertype'=>$request->usertype,
-            'created_at'=>Carbon::now()
-        ]);
+        $data = User::find($id);
+    	$data->name = $request->name;
+    	$data->email = $request->email;
+        $data->role = $request->role;
+    	$data->save();
 
         $notification= array(
             'message' =>'User Edited successfully',

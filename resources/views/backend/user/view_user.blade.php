@@ -29,6 +29,7 @@
                                             <th>Name</th>
                                             <th>Role</th>
                                             <th>Email</th>
+                                            <th>Code</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -38,8 +39,10 @@
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$user->name}}</td>
-                                            <td>{{$user->usertype}}</td>
+                                            <td>{{$user->role}}</td>
                                             <td>{{$user->email}}</td>
+                                            <td>{{$user->code}}</td>
+                                            
                                             <td>
                                                 <a href="{{url('users/edit/'.$user->id)}}" class="btn btn-info ">Edit</a>
                                                 <a href="{{url('users/delete/'.$user->id)}}" class=" btn btn-danger " id="delete">Delete</a>
@@ -55,6 +58,7 @@
                                             <th>Name</th>
                                             <th>Role</th>
                                             <th>Email</th>
+                                            <th>Code</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>

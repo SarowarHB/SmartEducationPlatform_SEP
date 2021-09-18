@@ -11,6 +11,7 @@ class StudentYear extends Model
 
     protected $fillable = [
         'yearName',
+        'year',
         
     ];
 }

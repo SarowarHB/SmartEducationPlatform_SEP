@@ -30,10 +30,10 @@
                                         <div class="form-group">
                                             <h5>User Role Select <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="usertype" id="select" required class="form-control">
+                                                <select name="role" id="select" required class="form-control">
                                                     <option value="" disabled="" selected="">Select Role</option>
                                                     <option value="Admin">Admin</option>
-                                                    <option value="User">User</option>
+                                                    <option value="Student">Student</option>
                                                     <option value="Acountent">Acountent</option>
                                                     <option value="Teacher">Teacher</option>
                                                 </select>
@@ -59,12 +59,7 @@
                                                 <input type="email" name="email" class="form-control" required
                                                     data-validation-required-message="This field is required"> </div>
                                         </div>
-                                        <div class="form-group">
-                                            <h5>Password <span class="text-danger">*</span></h5>
-                                            <div class="controls">
-                                                <input type="password" name="password" class="form-control" required
-                                                    data-validation-required-message="This field is required"> </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
 

@@ -25,8 +25,9 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th width="20%">SL No.</th>
-                                            <th width="40%">Year Name</th>
+                                            <th width="10%">SL No.</th>
+                                            <th width="30%">Year Name</th>
+                                            <th width="30%">Year</th>
                                             <th width="30%">Action</th>
                                         </tr>
                                     </thead>
@@ -36,6 +37,7 @@
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$user->yearName}}</td>
+                                            <td>{{$user->year}}</td>
                                             <td>
                                                 <a href="{{url('setups/edit/year/'.$user->id)}}" class="btn btn-info ">Edit</a>
                                                 <a href="{{url('setups/delete/year/'.$user->id)}}" class=" btn btn-danger " id="delete">Delete</a>
@@ -47,8 +49,9 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                            <th width="20%">SL No.</th>
-                                            <th width="50%">Year Name</th>
+                                    <th width="10%">SL No.</th>
+                                            <th width="30%">Year Name</th>
+                                            <th width="30%">Year</th>
                                             <th width="30%">Action</th>
                                         </tr>
                                     </tfoot>

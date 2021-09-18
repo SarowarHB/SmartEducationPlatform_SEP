@@ -20,14 +20,11 @@
                         <div class="col">
 
 
-                            <form action="{{route('year.store')}}" method="post" >
+                            <form action="{{route('year.store')}}" method="post">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
 
-
-
-                                     
                                         <div class="form-group">
                                             <h5>Year Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
@@ -35,12 +32,20 @@
                                                     data-validation-required-message="This field is required"> </div>
 
                                         </div>
+                                    </div>
 
+                                    <div class="col-md-6">
 
+                                        <div class="form-group">
+                                            <h5>Year <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                                <input type="text" name="year" class="form-control" required
+                                                    data-validation-required-message="This field is required"> </div>
+
+                                        </div>
 
 
                                     </div>
-                                    
                                 </div>
 
 

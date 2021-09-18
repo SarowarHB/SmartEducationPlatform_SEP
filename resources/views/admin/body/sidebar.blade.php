@@ -15,7 +15,7 @@ $route=Route::current()->getName();
 				  <!-- logo for regular state and mobile devices -->
 					 <div class="d-flex align-items-center justify-content-center">					 	
 						  <img src="{{asset('backend/images/logo-dark.png')}}" alt="">
-						  <h3>EP Admin</h3>
+						  <h3>EP Deshboard</h3>
 					 </div>
 				</a>
 			</div>
@@ -32,6 +32,7 @@ $route=Route::current()->getName();
         </li>  
 		
           <!-- /.User Management--->
+          @if(Auth::user()->role=='Admin')
         <li class="treeview {{ ($prefix =='/users')?'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
@@ -46,6 +47,7 @@ $route=Route::current()->getName();
             <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add User</a></li>
           </ul>
         </li> 
+        @endif
 
 		
           <!-- /.Profile Management--->
@@ -96,7 +98,7 @@ $route=Route::current()->getName();
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('student.registation.view')}}"><i class="ti-more"></i>Student Registation</a></li>
+            <li><a href="{{route('student.registration.view')}}"><i class="ti-more"></i>Student Registation</a></li>
             <!-- <li><a href="{{route('year.view')}}"><i class="ti-more"></i>Student Year</a></li>
             <li><a href="{{route('department.view')}}"><i class="ti-more"></i>Department</a></li>
             <li><a href="{{route('fee.view')}}"><i class="ti-more"></i>Fee Category</a></li>

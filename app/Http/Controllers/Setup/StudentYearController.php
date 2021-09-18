@@ -24,6 +24,7 @@ class StudentYearController extends Controller
     public function YearStore(Request $request){
         StudentYear::insert([
             'yearName' =>$request->yearName,
+            'year'=>$request->year,
             'created_at'=>Carbon::now()
 
         ]);
@@ -44,6 +45,7 @@ class StudentYearController extends Controller
     public function YearUpdate(Request $request, $id){
         StudentYear::find($id)->update([
             'yearName' =>$request->yearName,
+            'year'=>$request->year,
             'created_at'=>Carbon::now()
 
         ]);
