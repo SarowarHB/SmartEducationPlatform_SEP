@@ -22,11 +22,13 @@ class StudentRegController extends Controller
 
         $data['years'] = StudentYear::all();
     	$data['classes'] = StudentClass::all();
+        $data['users']=User::all();
 
     	$data['year_id'] = StudentYear::orderBy('id','desc')->first()->id;
     	$data['class_id'] = StudentClass::orderBy('id','desc')->first()->id;
     
-    	$data['allData'] = AssignStudent::where('year_id',$data['year_id'])->where('class_id',$data['class_id'])->get();
+    	$data['allData'] = AssignStudent::all();
+        //where('year_id',$data['year_id'])->where('class_id',$data['class_id'])->get();
     	
 
         return view('backend.studentManagent.student_reg.student_view',$data);
@@ -119,6 +121,125 @@ class StudentRegController extends Controller
             return redirect()->route('student.registration.view')->with($notification);
     
         } // End Method 
+
+        
+
+            public function StudentClassYearWise(Request $request){
+                $data['years'] = StudentYear::all();
+                $data['classes'] = StudentClass::all();
+        
+                $data['year_id'] = $request->year_id;
+                $data['class_id'] = $request->class_id;
+                 
+                $data['allData'] = AssignStudent::where('year_id',$request->year_id)->where('class_id',$request->class_id)->get();
+                
+                return view('backend.studentManagent.student_reg.student_view',$data);
+        
+            } 
+
+            public function StudentRegEdit($student_id){
+                $data['years'] = StudentYear::all();
+                $data['classes'] = StudentClass::all();
+                $data['departments'] = Department::all();
+                
+        
+                $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+                // dd($data['editData']->toArray());
+                return view('backend.studentManagent.student_reg.student_edit',$data);
+                
+        
+            }
+
+
+            public function StudentRegUpdate(Request $request,$student_id){
+                DB::transaction(function() use($request,$student_id){
+                 
+        
+                 
+                $user = User::where('id',$student_id)->first();    	 
+                $user->name = $request->name;
+                $user->fname = $request->fname;
+                $user->mname = $request->mname;
+                $user->mobile = $request->mobile;
+                $user->address = $request->address;
+                $user->gender = $request->gender;
+                $user->religion = $request->religion;
+                $user->dob = date('Y-m-d',strtotime($request->dob));
+        
+                if ($request->file('image')) {
+                    $file = $request->file('image');
+                    @unlink(public_path('upload/student_images/'.$user->image));
+                    $filename = date('YmdHi').$file->getClientOriginalName();
+                    $file->move(public_path('upload/student_images'),$filename);
+                    $user['image'] = $filename;
+                }
+                 $user->save();
+        
+                  $assign_student = AssignStudent::where('id',$request->id)->where('student_id',$student_id)->first();
+                   
+                  $assign_student->year_id = $request->year_id;
+                  $assign_student->class_id = $request->class_id;
+                  $assign_student->department_id = $request->department_id;
+                  $assign_student->save();
+        
+                  $discount_student = DiscuntStudent::where('assign_student_id',$request->id)->first();
+                 
+                  $discount_student->discount = $request->discount;
+                  $discount_student->save();
+        
+                });
+        
+        
+                $notification = array(
+                    'message' => 'Student Registration Updated Successfully',
+                    'alert-type' => 'success'
+                );
+        
+                return redirect()->route('student.registration.view')->with($notification);
+        
+            } // End Method 
+
+
+            public function StudentRegPromotion($student_id){
+                $data['years'] = StudentYear::all();
+                $data['classes'] = StudentClass::all();
+               
+                
+        
+                $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+                 
+                return view('backend.studentManagent.student_reg.student_promotion',$data);
+            
+        
+            }
+
+            public function StudentUpdatePromotion(Request $request,$student_id){
+                DB::transaction(function() use($request,$student_id){
+                 
+        
+        
+                    $assign_student = AssignStudent::where('id',$request->id)->where('student_id',$student_id)->first();
+                   
+                    $assign_student->year_id = $request->year_id;
+                    $assign_student->save();
+          
+                    $discount_student = DiscuntStudent::where('assign_student_id',$request->id)->first();
+                   
+                    $discount_student->discount = $request->discount;
+                    $discount_student->save();
+        
+                });
+        
+        
+                $notification = array(
+                    'message' => 'Student Promotion Updated Successfully',
+                    'alert-type' => 'success'
+                );
+        
+                return redirect()->route('student.registration.view')->with($notification);
+        
+            } // End Method
+        
     
  }
 
