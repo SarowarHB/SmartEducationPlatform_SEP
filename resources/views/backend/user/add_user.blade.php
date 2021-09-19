@@ -34,7 +34,7 @@
                                                     <option value="" disabled="" selected="">Select Role</option>
                                                     <option value="Admin">Admin</option>
                                                     <option value="Student">Student</option>
-                                                    <option value="Acountent">Acountent</option>
+                                                    <option value="Accounted">Accounted</option>
                                                     <option value="Teacher">Teacher</option>
                                                 </select>
                                             </div>

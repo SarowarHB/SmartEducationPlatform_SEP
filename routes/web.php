@@ -14,6 +14,7 @@ use App\Http\Controllers\Setup\SubjectController;
 use App\Http\Controllers\Setup\AssignSubjectController;
 use App\Http\Controllers\Setup\DesignationController;
 use App\Http\Controllers\backend\Student\StudentRegController;
+use App\Http\Controllers\backend\advising\AdvisingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -178,11 +179,16 @@ Route::prefix('students')->group(function(){
      Route::get('/exam/fee/classwisedata', [ExamFeeController::class, 'ExamFeeClassData'])->name('student.exam.fee.classwise.get');
      Route::get('/exam/fee/payslip', [ExamFeeController::class, 'ExamFeePayslip'])->name('student.exam.fee.payslip');
     
-    }); 
+}); 
 
 
 
+Route::prefix('advising')->group(function(){
 
-
-
-
+         Route::get('/view',[AdvisingController::class,'advisingView'])->name('advising.view');
+         Route::get('/add/{student_id}',[AdvisingController::class,'advisingAdd'])->name('advising.add');
+         Route::post('/store/{student_id}',[AdvisingController::class,'advisingStore'])->name('advising.store');
+         Route::get('/view/students',[AdvisingController::class,'StudentClassYearWise'])->name('student.year.class.wise');
+    
+});
+    

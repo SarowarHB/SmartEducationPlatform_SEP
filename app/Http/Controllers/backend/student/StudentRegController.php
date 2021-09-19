@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use App\Models\StudentYear;
 use App\Models\StudentClass;
 use App\Models\Department;
-use App\Models\StudentShift;
 use App\Models\User;
 use App\Models\AssignStudent;
 use App\Models\DiscuntStudent;
 use DB;
+use PDF;
 
 
 class StudentRegController extends Controller
@@ -83,6 +83,7 @@ class StudentRegController extends Controller
             $user->name = $request->name;
             $user->fname = $request->fname;
             $user->mname = $request->mname;
+            $user->email = $request->email;
             $user->mobile = $request->mobile;
             $user->address = $request->address;
             $user->gender = $request->gender;
@@ -100,6 +101,7 @@ class StudentRegController extends Controller
               $assign_student = new AssignStudent();
               $assign_student->student_id = $user->id;
               $assign_student->year_id = $request->year_id;
+              $assign_student->roll = $request->roll;
               $assign_student->class_id = $request->class_id;
               $assign_student->department_id = $request->department_id;
               $assign_student->save();
@@ -144,7 +146,7 @@ class StudentRegController extends Controller
                 
         
                 $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
-                // dd($data['editData']->toArray());
+                
                 return view('backend.studentManagent.student_reg.student_edit',$data);
                 
         
@@ -160,6 +162,7 @@ class StudentRegController extends Controller
                 $user->name = $request->name;
                 $user->fname = $request->fname;
                 $user->mname = $request->mname;
+                $user->email = $request->email;
                 $user->mobile = $request->mobile;
                 $user->address = $request->address;
                 $user->gender = $request->gender;
@@ -179,6 +182,7 @@ class StudentRegController extends Controller
                    
                   $assign_student->year_id = $request->year_id;
                   $assign_student->class_id = $request->class_id;
+                  $assign_student->roll = $request->roll;
                   $assign_student->department_id = $request->department_id;
                   $assign_student->save();
         
@@ -239,6 +243,16 @@ class StudentRegController extends Controller
                 return redirect()->route('student.registration.view')->with($notification);
         
             } // End Method
+
+
+            public function StudentRegDetails($student_id){
+                $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+           
+               $pdf = PDF::loadView('backend.studentManagent.student_reg.student_details_pdf', $data);
+               $pdf->SetProtection(['copy', 'print'], '', 'pass');
+               return $pdf->stream('document.pdf');
+           
+               }
         
     
  }

@@ -172,13 +172,14 @@
                                             </div> <!-- End Col md 4 -->
 
 
+
+
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>Discount <span class="text-danger">*</span></h5>
+                                                    <h5>Email <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="discount" class="form-control"
-                                                            required="">
+                                                        <input type="text" name="email" class="form-control" id="email">
                                                     </div>
                                                 </div>
 
@@ -263,7 +264,16 @@
 
                                         <div class="row">
                                             <!-- 5TH Row -->
+                                            <div class="col-md-4">
 
+                                                <div class="form-group">
+                                                    <h5>Roll <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="roll" class="form-control" id="roll">
+                                                    </div>
+                                                </div>
+
+                                            </div> <!-- End Col md 4 -->
 
 
                                             <div class="col-md-4">
@@ -281,6 +291,33 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
+                                                    <h5>Discount <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="discount" class="form-control"
+                                                            required="">
+                                                    </div>
+                                                </div>
+
+                                            </div> <!-- End Col md 4 -->
+
+
+
+                                        </div> <!-- End 5TH Row -->
+
+
+                                        <div class="row">
+                                            <!-- 6TH Row -->
+
+                                            <div class="col-md-5">
+                                                <div class="text-xs-right">
+                                                    <input type="submit" class="btn btn-rounded btn-info mb-5"
+                                                        value="Submit">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-4">
+
+                                                <div class="form-group">
                                                     <div class="controls">
                                                         <img id="showImage" src="{{ url('upload/no_image.jpg') }}"
                                                             style="width: 100px; width: 100px; border: 1px solid #000000;">
@@ -290,15 +327,16 @@
 
                                             </div> <!-- End Col md 4 -->
 
+                                            <div class="col-md-3">
 
-                                        </div> <!-- End 5TH Row -->
+                                            </div>
+
+                                        </div> <!-- End 6TH Row -->
 
 
 
 
-                                        <div class="text-xs-right">
-                                            <input type="submit" class="btn btn-rounded btn-info mb-5" value="Submit">
-                                        </div>
+
                             </form>
 
                         </div>

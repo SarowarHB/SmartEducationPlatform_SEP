@@ -34,7 +34,7 @@
                                                     <option value="" disabled="" selected="">Select Role</option>
                                                     <option value="Admin" {{($data->role == "Admin" ? "selected" : "")}}>Admin</option>
                                                     <option value="Student" {{($data->role == "Student" ? "selected" : "")}} >Student</option>
-                                                    <option value="Acountent" {{($data->role == "Acountent" ? "selected" : "")}} >Acountent</option>
+                                                    <option value="Accounted" {{($data->role == "Accounted" ? "selected" : "")}} >Accounted</option>
                                                     <option value="Teacher" {{($data->role == "Teacher" ? "selected" : "")}}>Teacher</option>
                                                 </select>
                                             </div>

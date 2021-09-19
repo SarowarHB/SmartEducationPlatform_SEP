@@ -90,7 +90,7 @@ $route=Route::current()->getName();
 
   <!-- /.Student Management--->
 
-        <li class="treeview {{($prefix=='/setups')?'active':''}}">
+        <li class="treeview {{($prefix=='/students')?'active':''}}">
           <a href="#">
             <i data-feather="package"></i> <span>Students Management</span>
             <span class="pull-right-container">
@@ -99,15 +99,21 @@ $route=Route::current()->getName();
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('student.registration.view')}}"><i class="ti-more"></i>Student Registation</a></li>
-            <!-- <li><a href="{{route('year.view')}}"><i class="ti-more"></i>Student Year</a></li>
-            <li><a href="{{route('department.view')}}"><i class="ti-more"></i>Department</a></li>
-            <li><a href="{{route('fee.view')}}"><i class="ti-more"></i>Fee Category</a></li>
-            <li><a href="{{route('fee.amount.view')}}"><i class="ti-more"></i>Fee Category Amount</a></li>
-            <li><a href="{{route('examType.view')}}"><i class="ti-more"></i>Exam Type</a></li>
-            <li><a href="{{route('subject.view')}}"><i class="ti-more"></i>All subjects</a></li>
-            <li><a href="{{route('assign.subject.view')}}"><i class="ti-more"></i>Assign subjects</a></li>
-            <li><a href="{{route('designation.view')}}"><i class="ti-more"></i>Designation</a></li> -->
-           
+           </ul>
+        </li>
+
+
+         <!-- /.Advising--->
+
+         <li class="treeview {{($prefix=='/advising')?'active':''}}">
+          <a href="#">
+            <i data-feather="package"></i> <span>Advising</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('advising.view')}}"><i class="ti-more"></i>Student Advising</a></li>
            </ul>
         </li>
       	  
