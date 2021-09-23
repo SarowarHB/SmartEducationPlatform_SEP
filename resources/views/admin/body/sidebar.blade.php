@@ -214,8 +214,8 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>View Profile</a></li>
-                    <li><a href=""><i class="ti-more"></i>Update Profile</a></li>
+                <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
+                    <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
                 </ul>
             </li>
            
@@ -325,7 +325,7 @@ $route=Route::current()->getName();
 
 
 
- <!--------------- /.End User Section--------------------->
+ <!--------------- /.End Student Section--------------------->
 
 
 

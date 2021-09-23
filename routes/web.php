@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\Setup\SetupController;
@@ -34,7 +37,12 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('admin.index');
+
+    $id=Auth::user()->id;
+    $data=User::find($id);
+   
+
+    return view('admin.index',compact('data'));
 })->name('dashboard');
 
 Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
