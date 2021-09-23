@@ -32,9 +32,8 @@
                                             <div class="controls">
                                                 <select name="role" id="role" required class="form-control">
                                                     <option value="" disabled="" selected="">Select Role</option>
-                                                    <option value="Admin" {{($data->role == "Admin" ? "selected" : "")}}>Admin</option>
-                                                    <option value="Student" {{($data->role == "Student" ? "selected" : "")}} >Student</option>
-                                                    <option value="Accounted" {{($data->role == "Accounted" ? "selected" : "")}} >Accounted</option>
+                                                    <option value="Admin" {{($data->role == "Admin" ? "selected" : "")}}>Admin</option>                 
+                                                    <option value="Accounted" {{($data->role == "Accountant" ? "selected" : "")}} >Accountant</option>
                                                     <option value="Teacher" {{($data->role == "Teacher" ? "selected" : "")}}>Teacher</option>
                                                 </select>
                                             </div>

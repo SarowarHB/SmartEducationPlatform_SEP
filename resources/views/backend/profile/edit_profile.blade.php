@@ -74,8 +74,8 @@
                                                 <select name="usertype" id="select" required class="form-control">
                                                 <option value="" disabled="" selected="">Select Role</option>
                                                     <option value="Admin" {{($data->usertype == "Admin" ? "selected" : "")}}>Admin</option>
-                                                    <option value="User" {{($data->usertype == "User" ? "selected" : "")}} >User</option>
-                                                    <option value="Acountent" {{($data->usertype == "Acountent" ? "selected" : "")}} >Acountent</option>
+                                                    <option value="Student" {{($data->usertype == "Student" ? "selected" : "")}} >Student</option>
+                                                    <option value="Acountent" {{($data->usertype == "Accountant" ? "selected" : "")}} >Accountant</option>
                                                     <option value="Teacher" {{($data->usertype == "Teacher" ? "selected" : "")}}>Teacher</option>
                                                 </select>
                                             </div>
@@ -99,10 +99,17 @@
                                         <div class="form-group">
                                             <h5>Disply Image</h5>
                                             <div class="controls">
-                                                <img id="showImage"
-                                                    src="{{(!empty($data->image)) ? url('upload/user_images/'.$data->image):url('upload/no_image.jpg')}}"
-                                                    style="width:100px; height:100px; border:1px; solid #000000; "
+                                               
+
+
+                                                    @if(Auth::user()->role=='')
+                            <img id="showImage" src="{{(!empty($data->image)) ? url('upload/student_images/'.$data->image):url('upload/no_image.jpg')}}"  style="width:100px; height:100px; border:1px; solid #000000; "
                                                     alt="User Avatar"">
+                  
+                            @else
+                            <img id="showImage" src="{{(!empty($data->image)) ? url('upload/user_images/'.$data->image):url('upload/no_image.jpg')}}"  style="width:100px; height:100px; border:1px; solid #000000; "
+                                                    alt="User Avatar"">
+                        @endif
                                                  </div>
 
                                         </div>

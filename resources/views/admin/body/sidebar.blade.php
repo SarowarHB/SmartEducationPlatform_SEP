@@ -15,7 +15,25 @@ $route=Route::current()->getName();
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="{{asset('backend/images/logo-dark.png')}}" alt="">
-                        <h3>EP Deshboard</h3>
+                        <h3>EP 
+                        @if(Auth::user()->role=='Admin')
+                        Admin
+                       
+
+                        @elseif(Auth::user()->role=='Accountant')
+                        Accountant
+                    
+
+                        @elseif(Auth::user()->role=='Teacher')
+                        Teacher
+                       
+
+                        @else
+                        Student
+                        @endif
+
+                        
+                        </h3>
                     </div>
                 </a>
             </div>
@@ -31,8 +49,13 @@ $route=Route::current()->getName();
                 </a>
             </li>
 
+
+     <!-------------------------------User Pannel---------------------------------->
             <!-- /.User Management--->
             @if(Auth::user()->role=='Admin')
+
+            <li class="header nav-small-cap">Admin Interface</li>
+
             <li class="treeview {{ ($prefix =='/users')?'active':''}}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -47,7 +70,7 @@ $route=Route::current()->getName();
                     <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add User</a></li>
                 </ul>
             </li>
-            @endif
+        
 
 
             <!-- /.Profile Management--->
@@ -103,8 +126,16 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
+            @endif
+ <!-------------------------------End Admin Pannel---------------------------------->
 
+
+ <!-------------------------------Teacher Pannel---------------------------------->
             <!-- /.Advising--->
+
+            @if(Auth::user()->role=='Teacher')
+
+            <li class="header nav-small-cap">Teacher Interface</li>
 
             <li class="treeview {{($prefix=='/advising')?'active':''}}">
                 <a href="#">
@@ -132,26 +163,177 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
+             <!-- /.attendence Management--->
 
-            <li class="header nav-small-cap">User Interface</li>
-
-            <li class="treeview">
+             <li class="treeview ">
                 <a href="#">
-                    <i data-feather="grid"></i>
-                    <span>Components</span>
+                    <i data-feather="package"></i> <span>Course Attendence</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>Alerts</a></li>
-                    <li><a href=""><i class="ti-more"></i>Badge</a></li>
-                    <li><a href=""><i class="ti-more"></i>Buttons</a></li>
-                    <li><a href=""><i class="ti-more"></i>Sliders</a></li>
-
+                    <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>Attendence Entry</a></li>
+                    <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>Attendence View</a></li>
                 </ul>
             </li>
 
+              <!-- /.exam Management--->
+
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="package"></i> <span>Exam Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>Add Exam</a></li>
+                    <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>View Exam Report</a></li>
+                </ul>
+            </li>
+            @endif
+
+
+   <!----------------------End Teacher Pannel---------------------------------->
+
+      
+
+    <!--------------------- /.Student Section-------------------------------->
+             <!-- /.User Management--->
+             @if(Auth::user()->role=='')
+
+             <li class="header nav-small-cap">Student Interface</li>
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Profile</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>View Profile</a></li>
+                    <li><a href=""><i class="ti-more"></i>Update Profile</a></li>
+                </ul>
+            </li>
+           
+
+            
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Finance</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>View Payment & Invoice</a></li>
+                    <li><a href=""><i class="ti-more"></i>Make Payment</a></li>
+                </ul>
+            </li>
+        
+
+
+            
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Scholarship Information </span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>View Scholarship Information</a></li>
+                </ul>
+            </li>
+        
+
+
+           
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>View Attendance</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>View Course Attendance</a></li>
+                </ul>
+            </li>
+      
+
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>View Class Sheet</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>View Class Sheet</a></li>
+                </ul>
+            </li>
+       
+
+           
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Online Test</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>Attend Online Test</a></li>
+                </ul>
+            </li>
+         
+
+           
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Reports & Transcripts</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>Academic Transcript</a></li>
+                </ul>
+            </li>
+            @endif
+
+
+            
+
+
+
+
+
+ <!--------------- /.End User Section--------------------->
+
+
+
+
+
+            
+
+            
 
         </ul>
     </section>

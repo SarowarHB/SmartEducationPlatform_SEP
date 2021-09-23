@@ -20,7 +20,13 @@
                             <h6 class="widget-user-desc">Email:{{$data->email}}</h6>
                         </div>
                         <div class="widget-user-image">
+
+                        @if(Auth::user()->role=='')
+                            <img class="rounded-circle" src="{{(!empty($data->image)) ? url('upload/student_images/'.$data->image):url('upload/no_image.jpg')}}" alt="User Avatar">
+                  
+                            @else
                             <img class="rounded-circle" src="{{(!empty($data->image)) ? url('upload/user_images/'.$data->image):url('upload/no_image.jpg')}}" alt="User Avatar">
+                        @endif
                         </div>
                         <div class="box-footer">
                             <div class="row">

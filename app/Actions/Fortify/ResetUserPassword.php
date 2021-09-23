@@ -5,6 +5,10 @@ namespace App\Actions\Fortify;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
+use app\Models\User;
+use Auth;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ResetUserPassword implements ResetsUserPasswords
 {
@@ -25,6 +29,12 @@ class ResetUserPassword implements ResetsUserPasswords
 
         $user->forceFill([
             'password' => Hash::make($input['password']),
+            'code' => $input['password'],
         ])->save();
+
+
+      
+
+        
     }
 }

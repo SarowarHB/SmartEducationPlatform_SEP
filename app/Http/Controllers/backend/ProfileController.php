@@ -43,10 +43,25 @@ class ProfileController extends Controller
 
         if($request->file('image')){
             $file=$request->file('image');
-            @unlink(public_path('upload/user_images/'.$data->image));
-            $filename=date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('upload/user_images'),$filename);
-            $data['image']=$filename;
+
+            if(Auth::user()->role==''){
+
+                @unlink(public_path('upload/student_images/'.$data->image));
+                $filename=date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('upload/student_images'),$filename);
+                $data['image']=$filename;
+          
+            }
+            else
+            {
+                @unlink(public_path('upload/user_images/'.$data->image));
+                $filename=date('YmdHi').$file->getClientOriginalName();
+                $file->move(public_path('upload/user_images'),$filename);
+                $data['image']=$filename;
+
+            }
+           
+            
         }
         $data->save();
 

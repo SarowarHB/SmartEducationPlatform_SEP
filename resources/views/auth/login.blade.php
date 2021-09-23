@@ -29,7 +29,7 @@
                 <div class="row justify-content-center no-gutters">
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="content-top-agile p-10">
-                            <h2 class="text-white">Admin Login</h2>
+                            <h2 class="text-white">SEP Login</h2>
                             <p class="text-white-50"> Get started with Us</p>
                         </div>
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
@@ -41,6 +41,23 @@
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
+
+                                <label  class="checkbox text-white">User Role Select</label>
+                                <div class="form-group">
+                                           
+                                  
+                                           
+                                            <div class="controls">
+                                                <select name="" id="select" required class="form-control">
+                                                    <option value="" disabled="" selected="">Select Role</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Teacher">Teacher</option>
+                                                    <option value="Student">Student</option>
+                                                    <option value="Accounted">Accountant</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">

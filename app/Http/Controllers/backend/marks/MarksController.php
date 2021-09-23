@@ -26,6 +26,7 @@ class MarksController extends Controller
     	$data['classes'] = StudentClass::all();
     	$data['exam_types'] = ExamType::all();
         $data['all_subjects'] = Subject::all();
+        $data['all_departments'] = Department::all();
         
 
     	return view('backend.studentManagent.marrksManagement.marks_add',$data);
@@ -41,6 +42,7 @@ class MarksController extends Controller
 
 
                 $data['examId'] =  $request->exam_type_id;
+                
 
                 
 
@@ -52,40 +54,31 @@ class MarksController extends Controller
              
     } 
     
-    
     public function MarksStore(Request $request){
 
-        $year_id=
+    	$studentcount = $request->student_id;
+    	if ($studentcount) {
+    		for ($i=0; $i <count($request->student_id) ; $i++) { 
+    		$data = New StudentsMarks();
+    		$data->year_id = $request->year_id;
+    		$data->class_id = $request->class_id;
+    		$data->assign_subject_id = $request->assign_subject_id;
+    		$data->exam_type_id = $request->exam_type_id;
+    		$data->student_id = $request->student_id[$i];
+    		$data->department_id = $request->id;
+    		$data->marks = $request->marks[$i];
+    		$data->save();
 
+    		} // end for loop
+    	}// end if conditon
 
-        $counter=count($request->marks);
+			$notification = array(
+    		'message' => 'Student Marks Inserted Successfully',
+    		'alert-type' => 'success'
+    	);
 
-        if($counter !=NULL){
+    	return redirect()->back()->with($notification);
 
-            for($i=0;$i<$counter;$i++){
-
-                $markAdd = new StudentsMarks();
-
-                
-                $markAdd->student_id=$request->student_id[$i];
-                $markAdd->marks=$request->marks[$i];
-                $markAdd->assign_subject_id=$request->assign_subject_id[$i];
-                $markAdd->department_id=$request->department_id[$i];
-                $markAdd->exam_type_id=$request->exam_type_id[$i];
-
-                $markAdd->year_id=$request->year_id[$i];
-                $markAdd->class_id=$request->class_id[$i];
-                $markAdd->save();
-
-
-            }
-        }
-
-        $notification= array(
-            'message' =>'Fee Amount Inserted successfully',
-            'alert-type'=>'success'
-        );
-       
-        return Redirect()->route('marks.entry.add')->with($notification);
-    }
+    }// end method
+    
 }

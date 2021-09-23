@@ -33,8 +33,7 @@
                                                 <select name="role" id="select" required class="form-control">
                                                     <option value="" disabled="" selected="">Select Role</option>
                                                     <option value="Admin">Admin</option>
-                                                    <option value="Student">Student</option>
-                                                    <option value="Accounted">Accounted</option>
+                                                    <option value="Accountant">Accountant</option>
                                                     <option value="Teacher">Teacher</option>
                                                 </select>
                                             </div>
