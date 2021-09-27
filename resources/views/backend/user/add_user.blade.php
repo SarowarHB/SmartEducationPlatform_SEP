@@ -22,6 +22,8 @@
 
                             <form action="{{route('user.store')}}" method="post" >
                                 @csrf
+
+                                <input type="hidden" name="usertype" value="admin">
                                 <div class="row">
                                     <div class="col-6">
 

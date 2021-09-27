@@ -328,6 +328,60 @@ $route=Route::current()->getName();
  <!--------------- /.End Student Section--------------------->
 
 
+  <!--------------------- /.Accounts Section-------------------------------->
+          
+             @if(Auth::user()->role=='Accountant')
+
+             <li class="header nav-small-cap">Accountant Interface</li>
+            <li class="treeview  {{($prefix=='/profile')?'active':''}}">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Profile</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
+                    <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
+                </ul>
+            </li>
+           
+
+            
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Finance</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href=""><i class="ti-more"></i>View Payment & Invoice</a></li>
+                    <li><a href=""><i class="ti-more"></i>Take Payment</a></li>
+                </ul>
+            </li>
+        
+
+
+            
+ 
+           
+            @endif
+
+
+            
+
+
+
+
+
+ <!--------------- /.End Accounts Section--------------------->
+
+
 
 
 
