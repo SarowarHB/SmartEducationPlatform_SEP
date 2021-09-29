@@ -44,7 +44,7 @@ class ProfileController extends Controller
         if($request->file('image')){
             $file=$request->file('image');
 
-            if(Auth::user()->role==''){
+            if(Auth::user()->role=='Student'){
 
                 @unlink(public_path('upload/student_images/'.$data->image));
                 $filename=date('YmdHi').$file->getClientOriginalName();

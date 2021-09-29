@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if(Auth::user()->role=='')
+@if(Auth::user()->role=='Student')
 
 <div class="content-wrapper">
     <div class="container-full">
@@ -23,7 +23,7 @@
                         </div>
                         <div class="widget-user-image">
 
-                        @if(Auth::user()->role=='')
+                        @if(Auth::user()->role=='Student')
                             <img class="rounded-circle" src="{{(!empty($data->image)) ? url('upload/student_images/'.$data->image):url('upload/no_image.jpg')}}" alt="User Avatar">
                   
                             @else

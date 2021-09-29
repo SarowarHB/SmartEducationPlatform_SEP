@@ -120,7 +120,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0" data-toggle="dropdown"
                         title="User">
-                        @if(Auth::user()->role=='')
+                        @if(Auth::user()->role=='Student')
                         <img class="rounded-circle"
                             src="{{(!empty($data->image)) ? url('upload/student_images/'.$data->image):url('upload/no_image.jpg')}}"
                             alt="User Avatar">

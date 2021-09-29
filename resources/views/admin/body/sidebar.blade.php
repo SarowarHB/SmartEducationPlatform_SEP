@@ -15,24 +15,24 @@ $route=Route::current()->getName();
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="{{asset('backend/images/logo-dark.png')}}" alt="">
-                        <h3>EP 
-                        @if(Auth::user()->role=='Admin')
-                        Admin
-                       
+                        <h3>EP
+                            @if(Auth::user()->role=='Admin')
+                            Admin
 
-                        @elseif(Auth::user()->role=='Accountant')
-                        Accountant
-                    
 
-                        @elseif(Auth::user()->role=='Teacher')
-                        Teacher
-                       
+                            @elseif(Auth::user()->role=='Accountant')
+                            Accountant
 
-                        @else
-                        Student
-                        @endif
 
-                        
+                            @elseif(Auth::user()->role=='Teacher')
+                            Teacher
+
+
+                            @else
+                            Student
+                            @endif
+
+
                         </h3>
                     </div>
                 </a>
@@ -50,7 +50,7 @@ $route=Route::current()->getName();
             </li>
 
 
-     <!-------------------------------User Pannel---------------------------------->
+    <!-------------------------------Admin Pannel---------------------------------->
             <!-- /.User Management--->
             @if(Auth::user()->role=='Admin')
 
@@ -70,7 +70,7 @@ $route=Route::current()->getName();
                     <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add User</a></li>
                 </ul>
             </li>
-        
+
 
 
             <!-- /.Profile Management--->
@@ -122,15 +122,33 @@ $route=Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('student.registration.view')}}"><i class="ti-more"></i>Student Registation</a>
+                    
+                    </li>
+                </ul>
+            </li>
+
+
+            <!------ Marks Grade Management ------->
+
+            <li class="treeview {{($prefix=='/marks')?'active':''}}">
+                <a href="#">
+                    <i data-feather="package"></i> <span>Marks Grade Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+            
+                    <li><a href="{{route('marks.entry.grade')}}"><i class="ti-more"></i>Student Marks Grade</a>
                     </li>
                 </ul>
             </li>
 
             @endif
- <!-------------------------------End Admin Pannel---------------------------------->
+    <!-------------------------------End Admin Pannel---------------------------------->
 
 
- <!-------------------------------Teacher Pannel---------------------------------->
+    <!----------------------------------Teacher Pannel---------------------------------->
             <!-- /.Advising--->
 
             @if(Auth::user()->role=='Teacher')
@@ -149,9 +167,9 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
-              <!-- /.Marks Management--->
+            <!-- /.Marks Management--->
 
-              <li class="treeview {{($prefix=='/marks')?'active':''}}">
+            <li class="treeview {{($prefix=='/marks')?'active':''}}">
                 <a href="#">
                     <i data-feather="package"></i> <span>Marks Management</span>
                     <span class="pull-right-container">
@@ -163,9 +181,9 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
-             <!-- /.attendence Management--->
+            <!-- /.attendence Management--->
 
-             <li class="treeview ">
+            <li class="treeview ">
                 <a href="#">
                     <i data-feather="package"></i> <span>Course Attendence</span>
                     <span class="pull-right-container">
@@ -178,7 +196,7 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
-              <!-- /.exam Management--->
+            <!-- /.exam Management--->
 
             <li class="treeview ">
                 <a href="#">
@@ -195,15 +213,15 @@ $route=Route::current()->getName();
             @endif
 
 
-   <!----------------------End Teacher Pannel---------------------------------->
+    <!----------------------End Teacher Pannel---------------------------------->
 
-      
+
 
     <!--------------------- /.Student Section-------------------------------->
-             <!-- /.User Management--->
-             @if(Auth::user()->role=='')
+            <!-- /.User Management--->
+            @if(Auth::user()->role=='Student')
 
-             <li class="header nav-small-cap">Student Interface</li>
+            <li class="header nav-small-cap">Student Interface</li>
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -214,13 +232,13 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
+                    <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
                     <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
                 </ul>
             </li>
-           
 
-            
+
+
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -235,10 +253,10 @@ $route=Route::current()->getName();
                     <li><a href=""><i class="ti-more"></i>Make Payment</a></li>
                 </ul>
             </li>
-        
 
 
-            
+
+
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -252,10 +270,10 @@ $route=Route::current()->getName();
                     <li><a href=""><i class="ti-more"></i>View Scholarship Information</a></li>
                 </ul>
             </li>
-        
 
 
-           
+
+
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -269,7 +287,7 @@ $route=Route::current()->getName();
                     <li><a href=""><i class="ti-more"></i>View Course Attendance</a></li>
                 </ul>
             </li>
-      
+
 
             <li class="treeview ">
                 <a href="#">
@@ -284,9 +302,9 @@ $route=Route::current()->getName();
                     <li><a href=""><i class="ti-more"></i>View Class Sheet</a></li>
                 </ul>
             </li>
-       
 
-           
+
+
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -300,9 +318,9 @@ $route=Route::current()->getName();
                     <li><a href=""><i class="ti-more"></i>Attend Online Test</a></li>
                 </ul>
             </li>
-         
 
-           
+
+
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -319,20 +337,20 @@ $route=Route::current()->getName();
             @endif
 
 
-            
 
 
 
 
 
- <!--------------- /.End Student Section--------------------->
+
+    <!--------------- /.End Student Section--------------------->
 
 
-  <!--------------------- /.Accounts Section-------------------------------->
-          
-             @if(Auth::user()->role=='Accountant')
+    <!--------------------- /.Accounts Section-------------------------------->
 
-             <li class="header nav-small-cap">Accountant Interface</li>
+            @if(Auth::user()->role=='Accountant')
+
+            <li class="header nav-small-cap">Accountant Interface</li>
             <li class="treeview  {{($prefix=='/profile')?'active':''}}">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -343,13 +361,13 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
+                    <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
                     <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
                 </ul>
             </li>
-           
 
-            
+
+
             <li class="treeview ">
                 <a href="#">
                     <i data-feather="message-circle"></i>
@@ -364,30 +382,30 @@ $route=Route::current()->getName();
                     <li><a href=""><i class="ti-more"></i>Take Payment</a></li>
                 </ul>
             </li>
-        
 
 
-            
- 
-           
+
+
+
+
             @endif
 
 
-            
 
 
 
 
 
- <!--------------- /.End Accounts Section--------------------->
+
+    <!--------------- /.End Accounts Section--------------------->
 
 
 
 
 
-            
 
-            
+
+
 
         </ul>
     </section>
