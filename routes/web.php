@@ -20,6 +20,7 @@ use App\Http\Controllers\backend\Student\StudentRegController;
 use App\Http\Controllers\backend\advising\AdvisingController;
 use App\Http\Controllers\backend\marks\MarksController;
 use App\Http\Controllers\backend\marks\GradeController;
+use App\Http\Controllers\backend\report\MarkSheetController;
 use App\Http\Controllers\backend\DefaultController;
 
 
@@ -211,10 +212,33 @@ Route::prefix('marks')->group(function(){
      Route::post('marks/grade/store', [GradeController::class, 'MarksGradeStore'])->name('store.marks.grade');
      Route::get('marks/grade/edit/{id}', [GradeController::class, 'MarksGradeEdit'])->name('marks.grade.edit');
      Route::post('marks/grade/update/{id}', [GradeController::class, 'MarksGradeUpdate'])->name('update.marks.grade');
-     }); 
+}); 
  
  
      Route::get('marks/getsubject', [DefaultController::class, 'GetSubject'])->name('marks.getsubject');
      Route::get('student/marks/getstudents', [DefaultController::class, 'GetStudents'])->name('student.marks.getstudents');
+
+
+     /// Report Management All Routes  
+Route::prefix('reports')->group(function(){
+
+    // MarkSheet Generate Routes 
+    Route::get('marksheet/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
+    Route::post('marksheet/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
+    
+    
+    // Attendance Report Routes 
+    Route::get('attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('attendance.report.view');
+    Route::get('report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('report.attendance.get');
+    
+    // Student Result Report Routes 
+    Route::get('student/result/view', [ResultReportController::class, 'ResultView'])->name('student.result.view');
+    Route::get('student/result/get', [ResultReportController::class, 'ResultGet'])->name('report.student.result.get');
+    
+    // Student ID Card Routes 
+    Route::get('student/idcard/view', [ResultReportController::class, 'IdcardView'])->name('student.idcard.view');
+    Route::get('student/idcard/get', [ResultReportController::class, 'IdcardGet'])->name('report.student.idcard.get');
+    
+    }); 
      
     

@@ -139,8 +139,25 @@ $route=Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
             
-                    <li><a href="{{route('marks.entry.grade')}}"><i class="ti-more"></i>Student Marks Grade</a>
-                    </li>
+                    <li><a href="{{route('marks.entry.grade')}}"><i class="ti-more"></i>Student Marks Grade</a></li>
+
+                   
+                </ul>
+            </li>
+
+
+            <li class="treeview {{($prefix=='/report')?'active':''}}">
+                <a href="#">
+                    <i data-feather="package"></i> <span>Result And Transcript</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+            
+                  
+
+                    <li><a href="{{route('marksheet.generate.view')}}"><i class="ti-more"></i>Student Result view</a></li>
                 </ul>
             </li>
 
@@ -151,7 +168,7 @@ $route=Route::current()->getName();
     <!----------------------------------Teacher Pannel---------------------------------->
             <!-- /.Advising--->
 
-            @if(Auth::user()->role=='Teacher')
+            @if(Auth::user()->role=='Admin')
 
             <li class="header nav-small-cap">Teacher Interface</li>
 

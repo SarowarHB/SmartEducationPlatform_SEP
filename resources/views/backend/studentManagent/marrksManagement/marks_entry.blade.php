@@ -36,7 +36,7 @@
                                                 <th width="30%">Subject Name</th>
                                                 <th width="5%">Credit</th>
                                                 <th width="30%">Department</th>
-                                                
+                                         
                                                 <th width="5%">ExamType</th>
                                                 <th width="10%">Marks</th>
 
