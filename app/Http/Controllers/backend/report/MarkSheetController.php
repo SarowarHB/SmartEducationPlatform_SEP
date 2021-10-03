@@ -11,6 +11,7 @@ use App\Models\StudentClass;
 use App\Models\StudentYear;
 use App\Models\MarksGrade;
 use App\Models\Department;
+use App\Models\AssignStudent;
 use App\Models\User;
 use DB;
 
@@ -40,7 +41,14 @@ class MarkSheetController extends Controller
 
     //$count_fail = StudentMarks::where('year_id',$year_id)->where('class_id',$class_id)->where('exam_type_id',$exam_type_id)->where('id_no',$id_no)->where('marks','<','33')->get()->count();
     	// dd($count_fail);
+
+    $data['data'] = StudentsMarks::select('exam_type_id')->groupBy('exam_type_id')
+    ->where('student_id',$std_id)->get();
+    
+    $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$std_id)->first();
+
     $data['demo'] = StudentsMarks::where('student_id',$std_id)->get();
+
 
     return view('backend.transcripts.view_transcript',$data);
 

@@ -9,6 +9,8 @@ class ExamType extends Model
 {
     
 
+    
+
     protected $fillable = [
         'examName',
         
