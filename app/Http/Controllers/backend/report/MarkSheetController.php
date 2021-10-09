@@ -14,6 +14,7 @@ use App\Models\Department;
 use App\Models\AssignStudent;
 use App\Models\User;
 use DB;
+use Auth;
 
 class MarkSheetController extends Controller
 {
@@ -52,26 +53,32 @@ class MarkSheetController extends Controller
 
     return view('backend.transcripts.view_transcript',$data);
 
-    // if ($singleStudent == true) {
+   
+    }
+
+    public function ResultView(){
+
+        
+
+
     
-    // $allMarks = StudentMarks::with(['assign_subject','year'])->where('year_id',$year_id)->where('class_id',$class_id)->where('exam_type_id',$exam_type_id)->where('id_no',$id_no)->get();
-    // 	// dd($allMarks->toArray());
-    // $allGrades = MarksGrade::all();
-    // return view('backend.report.marksheet.marksheet_pdf',compact('allMarks','allGrades','count_fail'));
 
-    // }else{
+        $std_id = Auth::user()->id;
+        //dd($std_id);
+    	
 
-    // 	$notification = array(
-    // 		'message' => 'Sorry These Criteria Donse not match',
-    // 		'alert-type' => 'error'
-    // 	);
+    //$count_fail = StudentMarks::where('year_id',$year_id)->where('class_id',$class_id)->where('exam_type_id',$exam_type_id)->where('id_no',$id_no)->where('marks','<','33')->get()->count();
+    	// dd($count_fail);
 
-    // 	return redirect()->back()->with($notification);
-    //    }
+    $data['data'] = StudentsMarks::select('exam_type_id')->groupBy('exam_type_id')
+    ->where('student_id',$std_id)->get();
+    
+    $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$std_id)->first();
+
+    $data['demo'] = StudentsMarks::where('student_id',$std_id)->get();
 
 
-  
+    return view('backend.transcripts.view_transcript',$data);
 
-    //
-}
+    }
 }

@@ -22,6 +22,7 @@ use App\Http\Controllers\backend\marks\MarksController;
 use App\Http\Controllers\backend\marks\GradeController;
 use App\Http\Controllers\backend\report\MarkSheetController;
 use App\Http\Controllers\backend\DefaultController;
+use App\Http\Controllers\backend\accounts\AccountsController;
 
 
 
@@ -222,23 +223,37 @@ Route::prefix('marks')->group(function(){
      /// Report Management All Routes  
 Route::prefix('reports')->group(function(){
 
-    // MarkSheet Generate Routes 
+    // MarkSheet Routes 
     Route::get('marksheet/view', [MarkSheetController::class, 'MarkSheetView'])->name('marksheet.generate.view');
     Route::post('marksheet/get', [MarkSheetController::class, 'MarkSheetGet'])->name('report.marksheet.get');
+     // Student Result Report Routes 
+    Route::get('student/result/view', [MarkSheetController::class, 'ResultView'])->name('transcript.view');
     
     
     // Attendance Report Routes 
     Route::get('attendance/report/view', [AttenReportController::class, 'AttenReportView'])->name('attendance.report.view');
     Route::get('report/attendance/get', [AttenReportController::class, 'AttenReportGet'])->name('report.attendance.get');
     
-    // Student Result Report Routes 
-    Route::get('student/result/view', [ResultReportController::class, 'ResultView'])->name('student.result.view');
-    Route::get('student/result/get', [ResultReportController::class, 'ResultGet'])->name('report.student.result.get');
+   
     
     // Student ID Card Routes 
     Route::get('student/idcard/view', [ResultReportController::class, 'IdcardView'])->name('student.idcard.view');
     Route::get('student/idcard/get', [ResultReportController::class, 'IdcardGet'])->name('report.student.idcard.get');
     
-    }); 
+}); 
      
-    
+
+
+     /// Accounts Management All Routes  
+Route::prefix('payment')->group(function(){
+
+        // Payment Routes 
+         Route::get('registration/fee/view', [AccountsController::class, 'RegFeeView'])->name('registration.fee.view');
+         Route::post('registration/fee/add', [AccountsController::class, 'RegFeeAdd'])->name('registration.fee.add');
+         Route::post('registration/fee/store', [AccountsController::class, 'RegFeeStore'])->name('registration.fee.store');
+         
+        
+        
+}); 
+         
+        
