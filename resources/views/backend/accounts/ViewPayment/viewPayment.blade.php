@@ -60,65 +60,76 @@
                             <!-- End Row -->
                         </div>
 
-                        <!-- /.box-header -->
+
+
                         <div class="box-body">
-                        <form method="post" action="{{ route('registration.fee.store') }}">
-                                @csrf
-                                <input type="hidden" name="student_id" value="{{$std_id}}">
-                                <input type="hidden" name="id_no" value="{{$id_no}}">
-                                <input type="hidden" name="year_id" value="{{$year_id}}">
-                                <input type="hidden" name="class_id" value="{{$class_id}}">
-                                <input type="hidden" name="department_id" value="{{$department_id}}">
-                                <div class="row">
-            
 
-                                    <div class="col-md-3">
+                            @foreach($data as $datas)
 
-                                    <h4> Fee Amount: {{ $amounts }} </h4>
+                            <h2> {{$datas['student_year']['yearName'] }}</h2>
 
-                                        <div class="form-group">
-                                            <h5>Registration Fee</h5> <span class="text-danger"> </span></h5>
-                                           
-                                            <div class="controls">
-                                                <input type="text" name="amount" class="form-control" required
-                                                    data-validation-required-message="This field is required" > </div>
-                                        </div>
-                                    </div>
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th width="5%">Installment No.</th>
+                                            <th width="5%">pay Ammount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </div> <!-- End Col md 3 -->
+
+                                        @php
+                                        $total_credit = 0;
+                                        $total_fee = 0;
+                                        $total_payment = 0;
+                                        $k=1;
+                                        @endphp
 
 
 
 
+                                        @foreach($paymentamount as $pdata)
+
+                                        @if($datas['student_year']['id']==$pdata->year_id )
+
+                                        <tr>
+                                            <td>{{$k++}}</td>
+
+                                            <td>{{ $pdata->amount }}</td>
+
+                                        </tr>
+                                        @endif
+                                        @endforeach
 
 
+                                    </tbody>
 
-                                <div class="col-md-3">
+                                </table>
 
-                                    <input type="submit" class="btn btn-rounded btn-primary" value="Submit">
-
-                                </div> <!-- End Col md 3 -->
-                             </div><!--  end row -->
-
-
-                        <!--  ////////////////// Mark Entry table /////////////  -->
-
-
-
-
-
-                        </form>
+                            </div>
+                            @endforeach
 
                         </div>
 
-                        <!-- /.box-body -->
+                        <!-- /.box-header -->
+
+
+
+
+
+
+
                     </div>
-                    <!-- /.box -->
+
+                    <!-- /.box-body -->
                 </div>
+                <!-- /.box -->
+            </div>
 
 
 
-                <!-- /.row -->
+            <!-- /.row -->
         </section>
         <!-- /.content -->
 

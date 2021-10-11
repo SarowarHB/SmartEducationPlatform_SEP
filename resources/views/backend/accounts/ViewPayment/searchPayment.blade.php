@@ -15,12 +15,12 @@
                 <div class="col-12">
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Student <strong>Registration Fee Add</strong></h4>
+                            <h4 class="box-title">Student <strong>Payment Details</strong></h4>
                         </div>
 
                         <div class="box-body">
 
-                            <form method="post" action="{{ route('registration.fee.add') }}">
+                            <form method="post" action="{{ route('payment.details.view') }}">
                                 @csrf
                                 <div class="row">
 

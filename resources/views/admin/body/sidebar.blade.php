@@ -394,9 +394,9 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>View Payment & Invoice</a></li>
+                    <li><a href="{{route('payment.view')}}"><i class="ti-more"></i>View Payment & Invoice</a></li>
                     <li><a href="{{route('registration.fee.view')}}"><i class="ti-more"></i>Take Registration Fee</a></li>
-                    <li><a href=""><i class="ti-more"></i>Take Semester Fee</a></li>
+                    <li><a href="{{route('semester.fee.view')}}"><i class="ti-more"></i>Take Semester Fee</a></li>
                 </ul>
             </li>
 

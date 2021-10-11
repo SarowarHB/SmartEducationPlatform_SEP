@@ -247,10 +247,20 @@ Route::prefix('reports')->group(function(){
      /// Accounts Management All Routes  
 Route::prefix('payment')->group(function(){
 
-        // Payment Routes 
+        // Registration fee Routes 
          Route::get('registration/fee/view', [AccountsController::class, 'RegFeeView'])->name('registration.fee.view');
          Route::post('registration/fee/add', [AccountsController::class, 'RegFeeAdd'])->name('registration.fee.add');
          Route::post('registration/fee/store', [AccountsController::class, 'RegFeeStore'])->name('registration.fee.store');
+
+          // Semester fee Routes 
+          Route::get('semester/fee/view', [AccountsController::class, 'semesterFeeView'])->name('semester.fee.view');
+          Route::post('semester/fee/add', [AccountsController::class, 'semesterFeeAdd'])->name('semester.fee.add');
+          Route::post('semester/fee/store', [AccountsController::class, 'semesterStore'])->name('semester.fee.store');
+
+          // Payment detiles Routes 
+          Route::get('view', [AccountsController::class, 'paymentView'])->name('payment.view');
+          Route::post('detiles/view', [AccountsController::class, 'paymentDetilesView'])->name('payment.details.view');
+        //   Route::post('semester/fee/store', [AccountsController::class, 'semesterStore'])->name('semester.fee.store');
          
         
         

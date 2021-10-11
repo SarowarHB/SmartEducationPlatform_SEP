@@ -60,9 +60,93 @@
                             <!-- End Row -->
                         </div>
 
+
+
+                        <div class="box-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table mb-0">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th width="5%">SEMESTER NAME</th>
+                                            <th width="5%">TOTAL COURSE CREDIT</th>
+                                            <th width="5%">Ammount/credit</th>
+                                            <th width="5%">Total Fee</th>
+                                            <th width="5%">Total Payment</th>
+                                            <th width="5%">Payment Due</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                    
+                                    @php
+                                        $total_credit = 0;
+                                        $total_fee = 0;
+                                        $total_payment = 0;
+                                    @endphp
+
+
+
+
+
+                                        <tr>
+                                            <td>{{$editData['student_year']['yearName']}}</td>
+                                            @foreach($studentData as $data)
+
+                                            @php
+                                            $total_credit=$total_credit+$data['subject']['credit'];
+                                            @endphp
+                                            @endforeach
+                                            <td>{{ $total_credit }} </td>
+
+                                            <td>{{ $amounts }}</td>
+
+                                            @php
+                                            $total_fee=$total_credit*$amounts+1000;
+                                            @endphp
+                                            <td>{{ $total_fee }}</td>
+
+                                            @if($paymentamount != NULL) {
+
+                                            @foreach($paymentamount as $pdata)
+
+                                            @php
+                                            $total_payment=$total_payment+$pdata->amount;
+                                            @endphp
+                                            @endforeach
+                                            <td>{{$total_payment}}</td>
+                                            <td>{{$total_fee-$total_payment}}</td>
+                                            }
+
+                                            @else {
+                                            <td>{{$total_payment}}</td>
+                                            <td>{{$total_fee}}</td>
+                                            }
+
+                                            @endif
+
+
+
+
+
+                                        </tr>
+
+
+
+
+
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+
                         <!-- /.box-header -->
                         <div class="box-body">
-                        <form method="post" action="{{ route('registration.fee.store') }}">
+                            <form method="post" action="{{ route('semester.fee.store') }}">
                                 @csrf
                                 <input type="hidden" name="student_id" value="{{$std_id}}">
                                 <input type="hidden" name="id_no" value="{{$id_no}}">
@@ -70,18 +154,18 @@
                                 <input type="hidden" name="class_id" value="{{$class_id}}">
                                 <input type="hidden" name="department_id" value="{{$department_id}}">
                                 <div class="row">
-            
+
 
                                     <div class="col-md-3">
 
-                                    <h4> Fee Amount: {{ $amounts }} </h4>
+
 
                                         <div class="form-group">
-                                            <h5>Registration Fee</h5> <span class="text-danger"> </span></h5>
-                                           
+                                            <h5>Payment Amount</h5> <span class="text-danger"> </span></h5>
+
                                             <div class="controls">
                                                 <input type="text" name="amount" class="form-control" required
-                                                    data-validation-required-message="This field is required" > </div>
+                                                    data-validation-required-message="This field is required"> </div>
                                         </div>
                                     </div>
 
@@ -98,7 +182,7 @@
                                     <input type="submit" class="btn btn-rounded btn-primary" value="Submit">
 
                                 </div> <!-- End Col md 3 -->
-                             </div><!--  end row -->
+                        </div><!--  end row -->
 
 
                         <!--  ////////////////// Mark Entry table /////////////  -->
@@ -109,16 +193,16 @@
 
                         </form>
 
-                        </div>
-
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
+
+                    <!-- /.box-body -->
                 </div>
+                <!-- /.box -->
+            </div>
 
 
 
-                <!-- /.row -->
+            <!-- /.row -->
         </section>
         <!-- /.content -->
 
