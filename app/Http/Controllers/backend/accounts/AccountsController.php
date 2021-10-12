@@ -15,6 +15,7 @@ use App\Models\Payment;
 use App\Models\Advising;
 use App\Models\DiscuntStudent;
 use App\Models\User;
+use App\Models\InstallmentDate;
 use DB;
 use Auth;
 
@@ -275,6 +276,12 @@ class AccountsController extends Controller
         $year_id= DB::table('assign_students')->where('student_id', $std_id)->value('year_id');
 
 
+        $last_date = DB::table('installment_dates')
+        ->orderBy('id', 'desc')
+        ->first();
+        //dd($last_date);
+
+
         
 
         $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
@@ -312,7 +319,7 @@ class AccountsController extends Controller
         
 
         return view('backend.accounts.ViewPayment.viewPayment',
-        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data'));
+        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data','last_date'));
 
 
     }
@@ -343,6 +350,7 @@ class AccountsController extends Controller
          
         return view('backend.accounts.schollership.update_scholarship',$data);
     }
+
     public function studentScholarshipStore(Request $request){
 
         $discount_student = DiscuntStudent::where('assign_student_id',$request->id)->first();
@@ -363,49 +371,47 @@ class AccountsController extends Controller
     public function ScholarshipView(){
 
         $std_id=Auth::user()->id;
-        $id_no=Auth::user()->id_no;
-        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
-        $department_id = DB::table('assign_students')->where('student_id', $std_id)->value('department_id');
-        $year_id= DB::table('assign_students')->where('student_id', $std_id)->value('year_id');
-
-
         
-
-        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
-        //dd($class_id);
-
         $editData= AssignStudent::with(['student','student_class','student_year','group'])
-        ->where('student_id',$std_id)->first();
-       
-
-
-         $studentData= Advising::with(['subject'])
-         ->where('student_id',$std_id)
-         ->where('year_id',$year_id)
-         ->where('department_id',$department_id)
-         ->where('class_id',$class_id)->get();
-        //dd($editData->toArray());
-        
-        $data = Payment::select('year_id')->groupBy('year_id')
-        ->where('student_id',$std_id)->where('fee_category_id','2')->get();
-        //dd($data->toArray());
-
-        $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
-        ->where('class_id',$class_id)->where('fee_category_id','2')
-        ->value('amount');
-        //dd($amounts);
-
-        $paymentamount = DB::table('payments')
-        ->where('student_id',$std_id)
-        ->where('department_id',$department_id)
-        ->where('class_id',$class_id)
-        ->where('fee_category_id','2')
-        ->get();
-        
-        
-        
+        ->where('student_id',$std_id)->first();    
 
         return view('backend.accounts.schollership.studentSeeScholership',
-        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data'));
+        compact('editData'));
+    }
+
+    public function installmentDateView(){
+
+        $last_date = DB::table('installment_dates')
+        ->orderBy('id', 'desc')
+        ->first();
+        //dd($last_date);
+
+        return view('backend.accounts.installmentDate.installmentDate_view',compact('last_date'));
+    }
+
+    public function installmentDateUpdate(){
+
+        $last_date = DB::table('installment_dates')
+        ->orderBy('id', 'desc')
+        ->first();
+
+        return view('backend.accounts.installmentDate.installmentDate_update',compact('last_date'));
+    }
+
+    public function installmentDateStore(Request $request){
+
+        $date=$request->last_Date;
+
+        $store_date=InstallmentDate::where('id',$request->id)->first();
+
+        $store_date->last_Date =  date('Y-m-d',strtotime($date));
+        $store_date->save();
+
+        $notification= array(
+            'message' =>'Date Successfully Added',
+            'alert-type'=>'success'
+        );
+       
+        return Redirect()->route('installmentDate.view')->with($notification);
     }
 }

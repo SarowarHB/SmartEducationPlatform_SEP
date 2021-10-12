@@ -23,6 +23,7 @@ use App\Http\Controllers\backend\marks\GradeController;
 use App\Http\Controllers\backend\report\MarkSheetController;
 use App\Http\Controllers\backend\DefaultController;
 use App\Http\Controllers\backend\accounts\AccountsController;
+use App\Http\Controllers\backend\studentAttendance\StudentsAttendanceController;
 
 
 
@@ -273,8 +274,30 @@ Route::prefix('payment')->group(function(){
            //Scholarship detailes Routes 
            Route::get('student/scholarship/view', [AccountsController::class, 'ScholarshipView'])->name('view.scholarship');
            
+           
+           Route::get('installmentDate/view', [AccountsController::class, 'installmentDateView'])->name('installmentDate.view');
+           Route::get('installmentDate/update', [AccountsController::class, 'installmentDateUpdate'])->name('update.date');
+           Route::post('installmentDate/store', [AccountsController::class, 'installmentDateStore'])->name('date.store');
+           
         
-        
+}); 
+
+
+//Attendence Routes
+Route::prefix('attendence')->group(function(){
+
+    // attendence add
+     Route::get('student/view', [StudentsAttendanceController::class, 'AttendanceView'])->name('attendence.view');
+     Route::get('student/find', [StudentsAttendanceController::class, 'AttendanceFind'])->name('student.find');
+     Route::post('student/add', [StudentsAttendanceController::class, 'AttendanceAdd'])->name('student.attendance.add');
+     Route::post('student/store', [StudentsAttendanceController::class, 'AttendanceStore'])->name('store.student.attendance');
+
+     Route::get('student/edit/{date}', [StudentsAttendanceController::class, 'AttendanceEdit'])->name('student.attendance.edit');
+
+     Route::get('student/details/{date}', [StudentsAttendanceController::class, 'AttendanceDetails'])->name('student.attendance.details');
+
+       
+    
 }); 
          
         

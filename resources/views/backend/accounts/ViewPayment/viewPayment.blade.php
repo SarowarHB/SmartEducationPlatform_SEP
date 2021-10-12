@@ -22,7 +22,7 @@
                                 <div class="col-md-4">
                                     <img src="{{url('upload/sep.png') }}" style="width: 100px; width: 100px;">
                                 </div><!-- End Col md 4 -->
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <h2>SEP ERP</h2>
                                     <p> <b>Student Payment Details </b> </p>
                                 </div><!-- End Col md 8 -->
@@ -32,11 +32,11 @@
                             <!-- End row-->
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <h4>Name: {{ $editData['student']['name'] }}</h4>
                                 </div><!-- End Col md 4 -->
 
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <h4>Id Number: {{ $editData['student']['id_no'] }}</h4>
                                 </div><!-- End Col md 4 -->
 
@@ -44,11 +44,11 @@
 
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <h4>Batch: {{ $editData['student_class']['className'] }}</h4>
                                 </div><!-- End Col md 4 -->
 
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <h4>Department: {{ $editData['group']['departmentName'] }}</h4>
                                 </div><!-- End Col md 4 -->
 
@@ -56,8 +56,11 @@
                             <br></br>
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                 <h4>Current Semester waiver = {{$editData['discount']['discount'] }}%</h4>
+                                </div>
+                                <div class="col-md-6">
+                                <h4>Last Date Of Current Installment = {{date('d-m-Y', strtotime($last_date->last_Date))}}</h4>
                                 </div>
                             </div>
 

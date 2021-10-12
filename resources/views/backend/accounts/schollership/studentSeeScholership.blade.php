@@ -23,8 +23,8 @@
                                     <img src="{{url('upload/sep.png') }}" style="width: 100px; width: 100px;">
                                 </div><!-- End Col md 4 -->
                                 <div class="col-md-8">
-                                    <h2>SEP ERP</h2>
-                                    <p> <b>Student Payment Details </b> </p>
+                                    
+                                    <h2> <b>Student Scholarship Information </b> </h2>
                                 </div><!-- End Col md 8 -->
                             </div> <!-- End row-->
 
