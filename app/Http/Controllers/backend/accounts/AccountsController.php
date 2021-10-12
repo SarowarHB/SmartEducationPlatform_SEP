@@ -13,6 +13,7 @@ use App\Models\AssignStudent;
 use App\Models\FeeAmountCategory;
 use App\Models\Payment;
 use App\Models\Advising;
+use App\Models\DiscuntStudent;
 use App\Models\User;
 use DB;
 use Auth;
@@ -263,5 +264,148 @@ class AccountsController extends Controller
         return view('backend.accounts.ViewPayment.viewPayment',
         compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data'));
 
+    }
+
+    public function studentPaymentView(){
+
+        $std_id=Auth::user()->id;
+        $id_no=Auth::user()->id_no;
+        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
+        $department_id = DB::table('assign_students')->where('student_id', $std_id)->value('department_id');
+        $year_id= DB::table('assign_students')->where('student_id', $std_id)->value('year_id');
+
+
+        
+
+        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
+        //dd($class_id);
+
+        $editData= AssignStudent::with(['student','student_class','student_year','group'])
+        ->where('student_id',$std_id)->first();
+       
+
+
+         $studentData= Advising::with(['subject'])
+         ->where('student_id',$std_id)
+         ->where('year_id',$year_id)
+         ->where('department_id',$department_id)
+         ->where('class_id',$class_id)->get();
+        //dd($editData->toArray());
+        
+        $data = Payment::select('year_id')->groupBy('year_id')
+        ->where('student_id',$std_id)->where('fee_category_id','2')->get();
+        //dd($data->toArray());
+
+        $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
+        ->where('class_id',$class_id)->where('fee_category_id','2')
+        ->value('amount');
+        //dd($amounts);
+
+        $paymentamount = DB::table('payments')
+        ->where('student_id',$std_id)
+        ->where('department_id',$department_id)
+        ->where('class_id',$class_id)
+        ->where('fee_category_id','2')
+        ->get();
+        
+        
+        
+
+        return view('backend.accounts.ViewPayment.viewPayment',
+        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data'));
+
+
+    }
+
+    public function studentScholarshipView(){
+
+        $dep = Department::all();
+        
+        //$data['years'] = StudentYear::orderBy('id','desc')->get();
+
+
+    	return view('backend.accounts.schollership.view_student',compact('dep'));
+    }
+
+    public function studentScholarshipUpdate(Request $request){
+
+        $department_id = $request->id;
+    	$id_no = $request->id_no;
+
+        $student_id = DB::table('users')->where('id_no', $id_no)->value('id');
+
+        $data['years'] = StudentYear::all();
+        $data['classes'] = StudentClass::all();
+       
+        
+
+        $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+         
+        return view('backend.accounts.schollership.update_scholarship',$data);
+    }
+    public function studentScholarshipStore(Request $request){
+
+        $discount_student = DiscuntStudent::where('assign_student_id',$request->id)->first();
+                   
+        $discount_student->discount = $request->discount;
+        $discount_student->save();
+
+        $notification = array(
+            'message' => 'Schollership Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('scholarship.search')->with($notification);
+
+
+    }
+
+    public function ScholarshipView(){
+
+        $std_id=Auth::user()->id;
+        $id_no=Auth::user()->id_no;
+        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
+        $department_id = DB::table('assign_students')->where('student_id', $std_id)->value('department_id');
+        $year_id= DB::table('assign_students')->where('student_id', $std_id)->value('year_id');
+
+
+        
+
+        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
+        //dd($class_id);
+
+        $editData= AssignStudent::with(['student','student_class','student_year','group'])
+        ->where('student_id',$std_id)->first();
+       
+
+
+         $studentData= Advising::with(['subject'])
+         ->where('student_id',$std_id)
+         ->where('year_id',$year_id)
+         ->where('department_id',$department_id)
+         ->where('class_id',$class_id)->get();
+        //dd($editData->toArray());
+        
+        $data = Payment::select('year_id')->groupBy('year_id')
+        ->where('student_id',$std_id)->where('fee_category_id','2')->get();
+        //dd($data->toArray());
+
+        $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
+        ->where('class_id',$class_id)->where('fee_category_id','2')
+        ->value('amount');
+        //dd($amounts);
+
+        $paymentamount = DB::table('payments')
+        ->where('student_id',$std_id)
+        ->where('department_id',$department_id)
+        ->where('class_id',$class_id)
+        ->where('fee_category_id','2')
+        ->get();
+        
+        
+        
+
+        return view('backend.accounts.schollership.studentSeeScholership',
+        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data'));
     }
 }

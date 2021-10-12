@@ -219,6 +219,7 @@ class StudentRegController extends Controller
             }
 
             public function StudentUpdatePromotion(Request $request,$student_id){
+                
                 DB::transaction(function() use($request,$student_id){
                  
         

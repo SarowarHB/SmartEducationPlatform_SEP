@@ -260,8 +260,19 @@ Route::prefix('payment')->group(function(){
           // Payment detiles Routes 
           Route::get('view', [AccountsController::class, 'paymentView'])->name('payment.view');
           Route::post('detiles/view', [AccountsController::class, 'paymentDetilesView'])->name('payment.details.view');
-        //   Route::post('semester/fee/store', [AccountsController::class, 'semesterStore'])->name('semester.fee.store');
-         
+
+          //Student Section Payment detailes Routes 
+          Route::get('student/view', [AccountsController::class, 'studentPaymentView'])->name('student.payment.view');
+          
+        
+           //Scholarship detailes Routes 
+           Route::get('scholarship/view', [AccountsController::class, 'studentScholarshipView'])->name('scholarship.search');
+           Route::post('scholarship/update', [AccountsController::class, 'studentScholarshipUpdate'])->name('scholarship.update');
+           Route::post('scholarship/update/store', [AccountsController::class, 'studentScholarshipStore'])->name('scholarship.update.store');
+
+           //Scholarship detailes Routes 
+           Route::get('student/scholarship/view', [AccountsController::class, 'ScholarshipView'])->name('view.scholarship');
+           
         
         
 }); 

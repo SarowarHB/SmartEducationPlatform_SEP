@@ -235,7 +235,7 @@ $route=Route::current()->getName();
 
     <!--------------------- /.Student Section-------------------------------->
             <!-- /.User Management--->
-            @if(Auth::user()->role=='Admin')
+            @if(Auth::user()->role=='Student')
 
             <li class="header nav-small-cap">Student Interface</li>
             <li class="treeview ">
@@ -265,7 +265,7 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>View Payment & Invoice</a></li>
+                    <li><a href="{{route('student.payment.view')}}"><i class="ti-more"></i>View Payment & Invoice</a></li>
                     <li><a href=""><i class="ti-more"></i>Make Payment</a></li>
                 </ul>
             </li>
@@ -283,7 +283,7 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>View Scholarship Information</a></li>
+                    <li><a href="{{route('view.scholarship')}}"><i class="ti-more"></i>View Scholarship Information</a></li>
                 </ul>
             </li>
 
@@ -397,6 +397,20 @@ $route=Route::current()->getName();
                     <li><a href="{{route('payment.view')}}"><i class="ti-more"></i>View Payment & Invoice</a></li>
                     <li><a href="{{route('registration.fee.view')}}"><i class="ti-more"></i>Take Registration Fee</a></li>
                     <li><a href="{{route('semester.fee.view')}}"><i class="ti-more"></i>Take Semester Fee</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview ">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+
+                    <span>Scholarship</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('scholarship.search')}}"><i class="ti-more"></i>Update Scholarship</a></li>
                 </ul>
             </li>
 

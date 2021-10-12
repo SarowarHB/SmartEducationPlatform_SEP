@@ -126,7 +126,7 @@
                                                 <img src="{{ (!empty($value['student']['image']))? url('upload/student_images/'.$value['student']['image']):url('upload/no_image.jpg') }}"
                                                     style="width: 60px; width: 60px;">
                                             </td>
-                                            <td> {{ $value->year_id }}</td>
+                                            <td> {{ $value['student']['code'] }}</td>
                                             <td>
                                                 <a title="Edit"
                                                     href="{{ route('student.registration.edit',$value->student_id) }}"

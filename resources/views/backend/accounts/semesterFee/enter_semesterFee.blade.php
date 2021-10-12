@@ -84,6 +84,8 @@
                                         $total_credit = 0;
                                         $total_fee = 0;
                                         $total_payment = 0;
+                                        $total_discount = 0;
+                                        $total_discountAmount = 0;
                                     @endphp
 
 
@@ -103,9 +105,17 @@
                                             <td>{{ $amounts }}</td>
 
                                             @php
-                                            $total_fee=$total_credit*$amounts+1000;
+                                            $total_fee=$total_credit*$amounts;
+                                            if($editData['discount']['discount'] !=0)
+                                            {
+                                                $total_discount=(float)$editData['discount']['discount']/(float)100;
+                                                $total_discountAmount=(float)$total_fee*(float)$total_discount;
+                                                $total_fee=(float)$total_fee-(float)$total_discountAmount;
+
+
+                                            }
                                             @endphp
-                                            <td>{{ $total_fee }}</td>
+                                            <td>{{ $total_fee+1000 }}</td>
 
                                             @if($paymentamount != NULL) {
 
@@ -116,7 +126,7 @@
                                             @endphp
                                             @endforeach
                                             <td>{{$total_payment}}</td>
-                                            <td>{{$total_fee-$total_payment}}</td>
+                                            <td>{{$total_fee+1000-$total_payment}}</td>
                                             }
 
                                             @else {

@@ -24,7 +24,7 @@
                                 </div><!-- End Col md 4 -->
                                 <div class="col-md-8">
                                     <h2>SEP ERP</h2>
-                                    <p> <b>Student Registration Fee </b> </p>
+                                    <p> <b>Student Payment Details </b> </p>
                                 </div><!-- End Col md 8 -->
                             </div> <!-- End row-->
 
@@ -53,6 +53,13 @@
                                 </div><!-- End Col md 4 -->
 
                             </div><!-- End Row -->
+                            <br></br>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                <h4>Current Semester waiver = {{$editData['discount']['discount'] }}%</h4>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <h1>---------------------------------------------------------------------</h1>
@@ -73,7 +80,7 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th width="5%">Installment No.</th>
-                                            <th width="5%">pay Ammount</th>
+                                            <th width="5%">Pay Ammount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,9 +90,30 @@
                                         $total_credit = 0;
                                         $total_fee = 0;
                                         $total_payment = 0;
+                                        $total_discount = 0;
+                                        $total_discountAmount = 0;
                                         $k=1;
                                         @endphp
 
+                                        @foreach($studentData as $data)
+
+                                            @php
+                                            $total_credit=$total_credit+$data['subject']['credit'];
+                                            @endphp
+                                        @endforeach
+
+                                        @php
+                                            $total_fee=$total_credit*$amounts;
+
+                                            if($editData['discount']['discount'] !=0 && $editData->year_id==$datas['student_year']['id'])
+                                            {
+                                                $total_discount=(float)$editData['discount']['discount']/(float)100;
+                                                $total_discountAmount=(float)$total_fee*(float)$total_discount;
+                                                $total_fee=(float)$total_fee-(float)$total_discountAmount;
+
+
+                                            }
+                                        @endphp
 
 
 
@@ -93,6 +121,9 @@
 
                                         @if($datas['student_year']['id']==$pdata->year_id )
 
+                                        @php
+                                            $total_payment=$total_payment+$pdata->amount;
+                                        @endphp
                                         <tr>
                                             <td>{{$k++}}</td>
 
@@ -101,6 +132,19 @@
                                         </tr>
                                         @endif
                                         @endforeach
+                                        <tr>
+                                            <td>Total Payment = </td>
+
+                                            <td>{{ $total_payment }}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>Payment Due = </td>
+
+                                            <td>{{ $total_fee+1000-$total_payment }}</td>
+
+                                        </tr>
 
 
                                     </tbody>

@@ -16,7 +16,7 @@
             <!-- Basic Forms -->
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title"> Student Promotion </h4>
+                    <h4 class="box-title"> Student Scholarship Information Update </h4>
 
                 </div>
                 <!-- /.box-header -->
@@ -42,40 +42,16 @@
                             <!-- End Row -->
 
                             <form method="post"
-                                action="{{ route('promotion.student.registration',$editData->student_id) }}"
+                                action="{{ route('scholarship.update.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $editData->id }}">
                                 <div class="row">
                                     <div class="col-12">
 
-
-
                                         <div class="row">
                                             <!-- 1st Row -->
                                                         
-
-                                            <div class="col-md-4">
-
-                                                <div class="form-group">
-                                                    <h5>Year <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <select name="year_id" required="" class="form-control">
-                                                            <option value="" selected="" disabled="">Select Year
-                                                            </option>
-                                                            @foreach($years as $year)
-                                                            <option value="{{ $year->id }}"
-                                                                {{ ($editData->year_id == $year->id)? "selected":"" }}>
-                                                                {{ $year->yearName }}</option>
-                                                            @endforeach
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div> <!-- End Col md 4 -->
-
-
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
@@ -89,25 +65,12 @@
                                             </div> <!-- End Col md 4 -->
 
 
-
-
-                                        
-
-
-
-
                                         </div> <!-- End 1st Row -->
-
-
-
-
-
-
 
 
                                         <div class="text-xs-right">
                                             <input type="submit" class="btn btn-rounded btn-info mb-5"
-                                                value="Promotion">
+                                                value="Update">
                                         </div>
                             </form>
 
@@ -129,18 +92,6 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#image').change(function (e) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#showImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-        });
-    });
-
-</script>
 
 
 
