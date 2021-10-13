@@ -15,34 +15,16 @@
                 <div class="col-12">
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Student <strong>Result View</strong></h4>
+                            <h4 class="box-title">Student <strong>Attendence Subject Select</strong></h4>
                         </div>
 
                         <div class="box-body">
 
-                            <form method="post" action="{{ route('student.attendance.add') }}">
+                            <form method="post" action="{{ route('student.attendance.find') }}">
                                 @csrf
+
+                                <input type="hidden" name="year_id" value="{{$year}}">
                                 <div class="row">
-
-
-                                    <div class="col-md-3">
-
-                                        <div class="form-group">
-                                            <h5>Semester <span class="text-danger"> </span></h5>
-                                            <div class="controls">
-                                                <select name="year_id"  required="" class="form-control">
-                                                    <option value="" selected="" disabled="">Select Department</option>
-                                                    @foreach($years as $year)
-                                                    <option value="{{ $year->id }}">
-                                                        {{ $year->yearName}}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div> <!-- End Col md 3 -->
-
 
                                     <div class="col-md-3">
 
@@ -50,10 +32,10 @@
                                             <h5>Subject <span class="text-danger"> </span></h5>
                                             <div class="controls">
                                                 <select name="subject_id"  required="" class="form-control">
-                                                    <option value="" selected="" disabled="">Select Department</option>
+                                                    <option value="" selected="" disabled="">Select Subject</option>
                                                     @foreach($subjects as $subject)
                                                     <option value="{{ $subject->id }}">
-                                                        {{ $subject->subjectName}}</option>
+                                                        {{ $subject['assign_subject']['subjectName']}}</option>
                                                     @endforeach
 
                                                 </select>
@@ -91,12 +73,5 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
 
 @endsection

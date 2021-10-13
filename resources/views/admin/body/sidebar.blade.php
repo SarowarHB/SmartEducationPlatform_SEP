@@ -300,7 +300,7 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>View Course Attendance</a></li>
+                    <li><a href="{{route('student.attendence.view')}}"><i class="ti-more"></i>View Course Attendance</a></li>
                 </ul>
             </li>
 

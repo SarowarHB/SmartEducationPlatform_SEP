@@ -287,14 +287,17 @@ Route::prefix('payment')->group(function(){
 Route::prefix('attendence')->group(function(){
 
     // attendence add
-     Route::get('student/view', [StudentsAttendanceController::class, 'AttendanceView'])->name('attendence.view');
-     Route::get('student/find', [StudentsAttendanceController::class, 'AttendanceFind'])->name('student.find');
-     Route::post('student/add', [StudentsAttendanceController::class, 'AttendanceAdd'])->name('student.attendance.add');
-     Route::post('student/store', [StudentsAttendanceController::class, 'AttendanceStore'])->name('store.student.attendance');
+     Route::get('teacher/view', [StudentsAttendanceController::class, 'AttendanceView'])->name('attendence.view');
+     Route::get('teacher/find', [StudentsAttendanceController::class, 'AttendanceFind'])->name('student.find');
+     Route::post('teacher/add', [StudentsAttendanceController::class, 'AttendanceAdd'])->name('student.attendance.add');
+     Route::post('teacher/store', [StudentsAttendanceController::class, 'AttendanceStore'])->name('store.student.attendance');
 
-     Route::get('student/edit/{subject_id}', [StudentsAttendanceController::class, 'AttendanceEdit'])->name('student.attendance.edit');
+     Route::get('teacher/edit/{subject_id}', [StudentsAttendanceController::class, 'AttendanceEdit'])->name('student.attendance.edit');
 
-     Route::get('student/details/{date}', [StudentsAttendanceController::class, 'AttendanceDetails'])->name('student.attendance.details');
+     Route::get('teacher/details/{subject_id}/{date}', [StudentsAttendanceController::class, 'AttendanceDetails'])->name('student.attendance.details');
+
+     Route::get('student/view', [StudentsAttendanceController::class, 'StudentAttendanceView'])->name('student.attendence.view');
+     Route::post('teacher/find', [StudentsAttendanceController::class, 'StudentAttendanceFind'])->name('student.attendance.find');
 
        
     

@@ -42,13 +42,12 @@
                                         <tr>
                                             <td>{{ $key+1 }}</td>
                                             <td> {{ $value['assign_subject']['subjectName'] }}</td>
-                                            <td> {{ $value->date }}</td>
+                                            <td> {{ date('d-m-Y', strtotime($value->date))  }}</td>
 
                                             <td>
-                                                <a href="{{ route('student.attendance.edit',$value->subject_id) }}"
-                                                    class="btn btn-info">Edit</a>
-                                                <a href="{{ route('student.attendance.details',$value->subject_id) }}"
-                                                    class="btn btn-danger">Details</a>
+                                                
+                                                <a href="{{url('attendence/student/details/'.$value->subject_id.'/'.$value->date)}}"
+                                                    class="btn btn-info">Details</a>
 
                                             </td>
 

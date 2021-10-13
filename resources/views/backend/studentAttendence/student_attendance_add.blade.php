@@ -74,7 +74,7 @@
 
                                                         <tr id="div{{$student->id}}" class="text-center">
                                                             <input type="hidden" name="student_id[]"
-                                                                value="{{ $student->id }}">
+                                                                value="{{ $student->student_id }}">
                             
 
                                                                 <input type="hidden" name="year_id[]"
