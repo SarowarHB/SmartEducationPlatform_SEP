@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentsAttendance extends Model
 {
-    use HasFactory;
+    public function student(){
+    	return $this->belongsTo(User::class, 'student_id','id');
+    }
+ 
+ public function assign_subject(){
+    	return $this->belongsTo(Subject::class, 'subject_id','id');
+    }
+
+
+ public function year(){
+    	return $this->belongsTo(StudentYear::class, 'year_id','id');
+    }
+
+
+ 
 }

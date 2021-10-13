@@ -292,7 +292,7 @@ Route::prefix('attendence')->group(function(){
      Route::post('student/add', [StudentsAttendanceController::class, 'AttendanceAdd'])->name('student.attendance.add');
      Route::post('student/store', [StudentsAttendanceController::class, 'AttendanceStore'])->name('store.student.attendance');
 
-     Route::get('student/edit/{date}', [StudentsAttendanceController::class, 'AttendanceEdit'])->name('student.attendance.edit');
+     Route::get('student/edit/{subject_id}', [StudentsAttendanceController::class, 'AttendanceEdit'])->name('student.attendance.edit');
 
      Route::get('student/details/{date}', [StudentsAttendanceController::class, 'AttendanceDetails'])->name('student.attendance.details');
 

@@ -26,7 +26,7 @@ use App\Models\StudentsAttendance;
 class StudentsAttendanceController extends Controller
 {
     public function AttendanceView(){
-        $data['allData'] = StudentsAttendance::select('date')->groupBy('date')->orderBy('id','DESC')->get();
+        $data['allData'] = StudentsAttendance::select('subject_id','date')->groupBy('subject_id','date')->orderBy('id','DESC')->get();
     	// $data['allData'] = EmployeeAttendance::orderBy('id','DESC')->get();
     	return view('backend.studentAttendence.student_attendance_view',$data);
 
@@ -51,7 +51,7 @@ class StudentsAttendanceController extends Controller
 
     public function AttendanceStore(Request $request){
 
-        StudentsAttendance::where('date', date('Y-m-d', strtotime($request->date)))->delete();
+        StudentsAttendance::where('date', date('Y-m-d', strtotime($request->date)))->where('subject_id',$request->subject_id[0])->delete();
 
     	$countstudent = count($request->student_id);
     	for ($i=0; $i <$countstudent ; $i++) { 

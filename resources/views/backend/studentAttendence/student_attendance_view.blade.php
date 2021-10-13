@@ -31,7 +31,8 @@
                                     <thead>
                                         <tr>
                                             <th width="5%">SL</th>
-                                            <th>Date </th>
+                                            <th>Subject name </th>
+                                            <th>Date</th>
                                             <th width="20%">Action</th>
 
                                         </tr>
@@ -40,12 +41,13 @@
                                         @foreach($allData as $key => $value )
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td> {{ date('d-m-Y', strtotime($value->date)) }}</td>
+                                            <td> {{ $value['assign_subject']['subjectName'] }}</td>
+                                            <td> {{ $value->date }}</td>
 
                                             <td>
-                                                <a href="{{ route('student.attendance.edit',$value->date) }}"
+                                                <a href="{{ route('student.attendance.edit',$value->subject_id) }}"
                                                     class="btn btn-info">Edit</a>
-                                                <a href="{{ route('student.attendance.details',$value->date) }}"
+                                                <a href="{{ route('student.attendance.details',$value->subject_id) }}"
                                                     class="btn btn-danger">Details</a>
 
                                             </td>
