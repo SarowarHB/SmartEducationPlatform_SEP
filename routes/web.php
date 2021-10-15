@@ -24,6 +24,7 @@ use App\Http\Controllers\backend\report\MarkSheetController;
 use App\Http\Controllers\backend\DefaultController;
 use App\Http\Controllers\backend\accounts\AccountsController;
 use App\Http\Controllers\backend\studentAttendance\StudentsAttendanceController;
+use App\Http\Controllers\backend\teachers\TeachersCourseController;
 
 
 
@@ -186,6 +187,19 @@ Route::prefix('students')->group(function(){
     
 }); 
 
+/// Teacher Course Routes  
+Route::prefix('teachers')->group(function(){
+
+    Route::get('view', [TeachersCourseController::class, 'TeachersView'])->name('teachers.view');  
+    Route::get('course/Add/{id}', [TeachersCourseController::class, 'TeachersCourseAdd'])->name('teacher.course.add');  
+    Route::post('course/store/{id}', [TeachersCourseController::class, 'TeachersCourseStore'])->name('course.store');   
+    Route::get('course/details/{id}', [TeachersCourseController::class, 'TeachersCourseDetails'])->name('teacher.course.details');
+    
+    
+}); 
+
+
+
 
 
 Route::prefix('advising')->group(function(){
@@ -297,7 +311,7 @@ Route::prefix('attendence')->group(function(){
      Route::get('teacher/details/{subject_id}/{date}', [StudentsAttendanceController::class, 'AttendanceDetails'])->name('student.attendance.details');
 
      Route::get('student/view', [StudentsAttendanceController::class, 'StudentAttendanceView'])->name('student.attendence.view');
-     Route::post('teacher/find', [StudentsAttendanceController::class, 'StudentAttendanceFind'])->name('student.attendance.find');
+     Route::post('student/find', [StudentsAttendanceController::class, 'StudentAttendanceFind'])->name('student.attendance.find');
 
        
     

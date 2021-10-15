@@ -19,4 +19,15 @@ class StudentAttendance extends Model
  public function year(){
     	return $this->belongsTo(StudentYear::class, 'year_id','id');
     }
+
+
+    protected $fillable = [
+        'student_id',
+        'date',
+        'attend_status',
+        'year_id',
+        'subject_id',
+        
+    ];
+   
 }

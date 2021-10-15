@@ -127,6 +127,22 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
+             <!-- /.Teachers Management--->
+
+             <li class="treeview {{($prefix=='/students')?'active':''}}">
+                <a href="#">
+                    <i data-feather="package"></i> <span>Teachers Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('teachers.view')}}"><i class="ti-more"></i>Teachers Course Management</a>
+                    
+                    </li>
+                </ul>
+            </li>
+
 
             <!------ Marks Grade Management ------->
 

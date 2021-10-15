@@ -105,17 +105,37 @@ class StudentsAttendanceController extends Controller
 
         $id=Auth::user()->id;
         //dd($id);
-        $year=AssignStudent::select('year_id')->where('student_id',$id)->get();
-        //dd($year_id->toArray());
-        //$subject_id=DB:: table('advisings')->where('student_id',$id)->where('year_id',$year)->value('subject_id');
-
+        $year=AssignStudent::where('student_id',$id)->first();
+        $year_id=$year->year_id;
+        //dd($data);
+        $subjects=Advising::select('subject_id')
+        ->where('student_id',$id)->where('year_id',$year_id)->orderBy('subject_id')->get();
+        //dd($subjects->toArray());
 
         //$data['details'] = Advising::where('student_id',$id)->where('year_id',$year)->all();
 
-        $subjects= StudentAttendance::select('subject_id')->groupBy('subject_id')
-        ->orderBy('id','DESC')->get();
+        //$subjects= StudentAttendance::select('subject_id')->groupBy('subject_id')->orderBy('id','DESC')->get();
 
         return view('backend.studentAttendence.studentView.attendence_search',compact('subjects','year'));
         
+    }
+
+    public function StudentAttendanceFind(Request $request){
+
+        $id=Auth::user()->id;
+        $subject_id= $request->subject_id;
+        //dd($subject_id);
+        $year=AssignStudent::where('student_id',$id)->first();
+        $year_id=$year->year_id;
+        //dd($data);
+
+        $subjectName=Subject::where('id',$subject_id)->first();
+        //dd($subjectName);
+
+        $attend= StudentAttendance::where('subject_id',$subject_id)->where('student_id',$id)->where('year_id',$year_id)->get();
+        //dd($attend->toArray());
+
+        return view('backend.studentAttendence.studentView.viewAttendence',compact('attend','subjectName'));
+
     }
 }
