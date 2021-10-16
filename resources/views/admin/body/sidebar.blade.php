@@ -183,7 +183,7 @@ $route=Route::current()->getName();
     <!----------------------------------Teacher Pannel---------------------------------->
             <!-- /.Advising--->
 
-            @if(Auth::user()->role=='Admin')
+            @if(Auth::user()->role=='Teacher')
 
             <li class="header nav-small-cap">Teacher Interface</li>
 
@@ -232,14 +232,13 @@ $route=Route::current()->getName();
 
             <li class="treeview ">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Exam Management</span>
+                    <i data-feather="package"></i> <span>Lecture Sheet</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>Add Exam</a></li>
-                    <li><a href="{{route('marks.entry.add')}}"><i class="ti-more"></i>View Exam Report</a></li>
+                    <li><a href="{{route('course.view')}}"><i class="ti-more"></i>Lecture Sheet</a></li>
                 </ul>
             </li>
             @endif
@@ -331,7 +330,7 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>View Class Sheet</a></li>
+                    <li><a href="{{route('student.course.view')}}"><i class="ti-more"></i>View Class Sheet</a></li>
                 </ul>
             </li>
 

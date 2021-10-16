@@ -19,9 +19,11 @@ use App\Models\InstallmentDate;
 use App\Models\Subject;
 use App\Models\StudentAttendance;
 use App\Models\TeachersCourse;
+use App\Models\CourseSheet;
 use DB;
 use Auth;
 use PDF;
+use Image;
 
 
 class TeachersCourseController extends Controller
@@ -87,5 +89,77 @@ class TeachersCourseController extends Controller
 
 
         return view('backend.teachers.teachersCourse.view_courses', $data);
+    }
+
+    public function CourseView(){
+        $id=Auth::user()->id;
+        $year=StudentYear::select('id')->orderBy('id','desc')->first();
+        $year_id=$year->id;
+
+        $data['courses'] = TeachersCourse::where('teacher_id',$id)->where('year_id',$year_id)->get();
+
+        return view('backend.teachers.lectureSheet.viewSubjects', $data);
+
+
+    }
+
+    public function LectureAdd($subject_id) {
+       
+       
+       $data['subjects'] = Subject::where('id',$subject_id)->first();
+
+        return view('backend.teachers.lectureSheet.add_lecture', $data);
+    }
+
+    public function LectureStore(Request $request,$subject_id){
+   
+                $addLecture = new CourseSheet();
+
+                $addLecture->teacher_id= $id;
+                $addLecture->lecture_name=$request->lecture_name;
+                $addLecture->year_id=$year_id;
+                $addLecture->subject_id=$subject_id;
+
+                  $file = $request->file('file');
+                    //dd($file);
+
+                    $filename = date('YmdHi').$file->getClientOriginalName();
+                    
+                    $file->move(public_path('upload/lectureSheet'),$filename);
+                    $addLecture['file'] = $filename;
+
+                $addLecture->save();       
+
+        $notification= array(
+            'message' =>'Add Lecture successfully',
+            'alert-type'=>'success'
+        );
+       
+        return Redirect()->route('course.view')->with($notification);
+
+
+    }
+
+    public function LectureDetails($subject_id){
+
+        $id=Auth::user()->id;
+        $year=StudentYear::select('id')->orderBy('id','desc')->first();
+        $year_id=$year->id;
+
+        $data['lectures'] = CourseSheet::where('teacher_id',$id)
+        ->where('year_id',$year_id)
+        ->where('subject_id',$subject_id)
+        ->get();
+    
+
+        return view('backend.teachers.lectureSheet.view_lectures', $data);
+    }
+
+    public function LectureView($id){
+
+        $data=CourseSheet::find($id);
+        //dd($data->toArray());
+        return view('backend.teachers.lectureSheet.students_details_pdf',compact('data'));
+
     }
 }

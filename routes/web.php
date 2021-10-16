@@ -25,6 +25,8 @@ use App\Http\Controllers\backend\DefaultController;
 use App\Http\Controllers\backend\accounts\AccountsController;
 use App\Http\Controllers\backend\studentAttendance\StudentsAttendanceController;
 use App\Http\Controllers\backend\teachers\TeachersCourseController;
+use App\Http\Controllers\backend\student\ClasssheetController;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 
 
@@ -190,13 +192,35 @@ Route::prefix('students')->group(function(){
 /// Teacher Course Routes  
 Route::prefix('teachers')->group(function(){
 
+    //Admin Section Routes
     Route::get('view', [TeachersCourseController::class, 'TeachersView'])->name('teachers.view');  
     Route::get('course/Add/{id}', [TeachersCourseController::class, 'TeachersCourseAdd'])->name('teacher.course.add');  
     Route::post('course/store/{id}', [TeachersCourseController::class, 'TeachersCourseStore'])->name('course.store');   
     Route::get('course/details/{id}', [TeachersCourseController::class, 'TeachersCourseDetails'])->name('teacher.course.details');
+
+    //Admin Section Routes
+    Route::get('course/view', [TeachersCourseController::class, 'CourseView'])->name('course.view');  
+    Route::get('lecture/Add/{subject_id}', [TeachersCourseController::class, 'LectureAdd'])->name('course.lecture.add');  
+    Route::post('lecture/store/{subject_id}', [TeachersCourseController::class, 'LectureStore'])->name('course.lecture.store');   
+    Route::get('lecture/details/{subject_id}', [TeachersCourseController::class, 'LectureDetails'])->name('course.lecture.details');
+    Route::get('lecture/view/{id}', [TeachersCourseController::class, 'LectureView'])->name('course.lecture.view');
     
     
 }); 
+
+//Student lecture Sheet View
+Route::prefix('student')->group(function(){
+
+    
+
+    //Admin Section Routes
+    Route::get('course/view', [ClasssheetController::class, 'StudentCourseView'])->name('student.course.view');  
+    Route::get('lecture/details/{subject_id}', [ClasssheetController::class, 'StudentLectureDetails'])->name('student.course.lecture.details');
+    Route::get('lecture/view/{id}', [ClasssheetController::class, 'StudentLectureView'])->name('student.course.lecture.view');
+    
+    
+}); 
+
 
 
 
@@ -316,5 +340,22 @@ Route::prefix('attendence')->group(function(){
        
     
 }); 
+
+
+
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
          
         
