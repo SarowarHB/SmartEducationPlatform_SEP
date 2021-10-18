@@ -281,7 +281,7 @@ $route=Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('student.payment.view')}}"><i class="ti-more"></i>View Payment & Invoice</a></li>
-                    <li><a href=""><i class="ti-more"></i>Make Payment</a></li>
+                    <li><a href="{{route('example.example1')}}"><i class="ti-more"></i>Make Payment</a></li>
                 </ul>
             </li>
 

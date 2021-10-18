@@ -344,8 +344,8 @@ Route::prefix('attendence')->group(function(){
 
 
 // SSLCOMMERZ Start
-Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('example.example1');
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('example.example2');
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
