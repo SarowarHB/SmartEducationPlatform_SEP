@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Student <strong>Attendence Subject Select</strong></h4>
+                            <h3 class="box-title"> <strong>Student Attendence Subject Select</strong></h3>
                         </div>
 
                         <div class="box-body">

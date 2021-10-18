@@ -2,7 +2,7 @@
 
 @section('content')
 
-@if(Auth::user()->role=='Student')
+@if(Auth::user()->role=='Student'||Auth::user()->role=='Teacher')
 
 <div class="content-wrapper">
     <div class="container-full">

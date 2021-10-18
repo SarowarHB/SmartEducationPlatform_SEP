@@ -19,10 +19,10 @@
                         <div class="box-header with-border">
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <img src="{{url('upload/sep.png') }}" style="width: 100px; width: 100px;">
                                 </div><!-- End Col md 4 -->
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     
                                     <h2> <b>Student Scholarship Information </b> </h2>
                                 </div><!-- End Col md 8 -->
@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                <h4>Current Semester waiver = {{$editData['discount']['discount'] }}%</h4>
+                                <strong><h3>Current Semester Waiver = {{$editData['discount']['discount'] }}%</h3></strong>
                                 </div>
                             </div>
 

@@ -16,7 +16,7 @@
                 <div class="col-12">
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Lectures <strong>View</strong></h4>
+                            <h3 class="box-title">Lectures <strong>View</strong></h3>
                         </div>
 
                         
@@ -28,7 +28,7 @@
 
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Lectures List</h3>
+                            <h4 class="box-title">Lectures List</h4>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

@@ -127,7 +127,7 @@
 
                                     <div class="col-md-3">
 
-                                        <a id="search" class="btn btn-primary" name="search"> Search</a>
+                                        <a style="margin-top: 25px;" id="search" class="btn btn-primary" name="search"> Search</a>
 
                                     </div> <!-- End Col md 3 -->
                                 </div><!--  end row -->

@@ -258,12 +258,16 @@ class AccountsController extends Controller
         ->where('class_id',$class_id)
         ->where('fee_category_id','2')
         ->get();
+
+        $last_date = DB::table('installment_dates')
+        ->orderBy('id', 'desc')
+        ->first();
         
         
         
 
         return view('backend.accounts.ViewPayment.viewPayment',
-        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data'));
+        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data','last_date'));
 
     }
 

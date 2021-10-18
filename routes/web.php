@@ -27,6 +27,7 @@ use App\Http\Controllers\backend\studentAttendance\StudentsAttendanceController;
 use App\Http\Controllers\backend\teachers\TeachersCourseController;
 use App\Http\Controllers\backend\student\ClasssheetController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\backend\classRoutine\ClaassRoutineController;
 
 
 
@@ -321,6 +322,24 @@ Route::prefix('payment')->group(function(){
 }); 
 
 
+
+     /// scholarship All Routes  
+Route::prefix('scholarship')->group(function(){
+          
+        
+           //Scholarship detailes Routes 
+           Route::get('view', [AccountsController::class, 'studentScholarshipView'])->name('scholarship.search');
+           Route::post('update', [AccountsController::class, 'studentScholarshipUpdate'])->name('scholarship.update');
+           Route::post('update/store', [AccountsController::class, 'studentScholarshipStore'])->name('scholarship.update.store');
+
+           //Scholarship detailes Routes 
+           Route::get('student/scholarship/view', [AccountsController::class, 'ScholarshipView'])->name('view.scholarship');
+                
+        
+}); 
+
+
+
 //Attendence Routes
 Route::prefix('attendence')->group(function(){
 
@@ -340,6 +359,25 @@ Route::prefix('attendence')->group(function(){
        
     
 }); 
+
+
+     /// Class routine All Routes  
+Route::prefix('routine')->group(function(){
+          
+        
+        //Scholarship detailes Routes 
+        Route::get('classWise/view', [ClaassRoutineController::class, 'AllRoutineView'])->name('class.routine.view');
+        Route::get('classWise/add',[ClaassRoutineController::class,'RoutineAdd'])->name('class.routine.add');
+        Route::post('store', [ClaassRoutineController::class, 'StudentRoutineStore'])->name('class.routine.store');
+        Route::get('classWise/edit/{id}',[ClaassRoutineController::class,'ClassRoutineEdit'])->name('class.routine.edit');
+        Route::post('update/store/{id}', [ClaassRoutineController::class, 'StudentRoutineUpdate'])->name('class.routine.update');
+
+        //Scholarship detailes Routes 
+        Route::get('view/{$id}', [ClaassRoutineController::class, 'RoutineView'])->name('class.routine.details');
+             
+     
+}); 
+
 
 
 

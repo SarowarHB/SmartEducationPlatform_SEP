@@ -16,7 +16,7 @@
                 <div class="col-12">
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Courses <strong>View</strong></h4>
+                            <h4 class="box-title">Courses Lecture Sheet <strong>View</strong></h4>
                         </div>
 
                         

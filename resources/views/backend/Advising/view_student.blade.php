@@ -105,6 +105,7 @@
                                             <th>Year</th>
                                             <th>Class</th>
                                             <th>Image</th>
+                                            <th>YearId</th>
                                             @if(Auth::user()->role == "Admin")
                                             <th>Code</th>
                                             @endif

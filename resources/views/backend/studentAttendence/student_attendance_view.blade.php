@@ -46,7 +46,7 @@
 
                                             <td>
                                                 
-                                                <a href="{{url('attendence/student/details/'.$value->subject_id.'/'.$value->date)}}"
+                                                <a href="{{url('attendence/teacher/details/'.$value->subject_id.'/'.$value->date)}}"
                                                     class="btn btn-info">Details</a>
 
                                             </td>

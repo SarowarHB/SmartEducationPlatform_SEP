@@ -66,8 +66,8 @@ $route=Route::current()->getName();
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{route('user.view')}}"><i class="ti-more"></i>View User</a></li>
-                    <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add User</a></li>
+                    <li><a href="{{route('user.view')}}"><i class="ti-more"></i>View Employees</a></li>
+                    <li><a href="{{route('user.add')}}"><i class="ti-more"></i>Add Employee</a></li>
                 </ul>
             </li>
 
@@ -115,7 +115,7 @@ $route=Route::current()->getName();
 
             <li class="treeview {{($prefix=='/students')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Students Management</span>
+                    <i data-feather="grid"></i> <span>Students Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -129,9 +129,9 @@ $route=Route::current()->getName();
 
              <!-- /.Teachers Management--->
 
-             <li class="treeview {{($prefix=='/students')?'active':''}}">
+             <li class="treeview {{($prefix=='/teachers')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Teachers Management</span>
+                    <i data-feather="grid"></i> <span>Teachers Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -148,7 +148,7 @@ $route=Route::current()->getName();
 
             <li class="treeview {{($prefix=='/marks')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Marks Grade Management</span>
+                    <i data-feather="grid"></i> <span>Marks Grade Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -161,10 +161,11 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
+             <!-- /.Result And Transcript Management--->
 
-            <li class="treeview {{($prefix=='/report')?'active':''}}">
+            <li class="treeview {{($prefix=='/reports')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Result And Transcript</span>
+                    <i data-feather="file-text"></i> <span>Result And Transcript</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -174,6 +175,20 @@ $route=Route::current()->getName();
                     <li><a href="{{route('marksheet.generate.view')}}"><i class="ti-more"></i>Student Result view</a></li>
                 </ul>
 
+            </li>
+
+             <!-- /.Class Routine Management--->
+
+             <li class="treeview {{($prefix=='/routine')?'active':''}}">
+                <a href="#">
+                    <i data-feather="book-open"></i> <span> Class Routine</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('class.routine.view')}}"><i class="ti-more"></i>View Class Routine</a></li>
+                </ul>
             </li>
 
             @endif
@@ -186,10 +201,24 @@ $route=Route::current()->getName();
             @if(Auth::user()->role=='Teacher')
 
             <li class="header nav-small-cap">Teacher Interface</li>
+            <li class="treeview {{($prefix=='/profile')?'active':''}}">
+                <a href="#">
+                    <i data-feather="user"></i>
+
+                    <span>Profile</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('profile.view')}}"><i class="ti-more"></i>View Profile</a></li>
+                    <li><a href="{{route('edit.password')}}"><i class="ti-more"></i>Edit Password</a></li>
+                </ul>
+            </li>
 
             <li class="treeview {{($prefix=='/advising')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Advising</span>
+                    <i data-feather="user-plus"></i> <span>Advising</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -203,7 +232,7 @@ $route=Route::current()->getName();
 
             <li class="treeview {{($prefix=='/marks')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Marks Management</span>
+                    <i data-feather="file-text"></i> <span>Marks Management</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -215,9 +244,9 @@ $route=Route::current()->getName();
 
             <!-- /.attendence Management--->
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/attendence')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Course Attendence</span>
+                    <i data-feather="edit"></i> <span>Course Attendence</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -228,11 +257,11 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
-            <!-- /.exam Management--->
+            <!-- /.Lecture Management--->
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/teachers')?'active':''}}">
                 <a href="#">
-                    <i data-feather="package"></i> <span>Lecture Sheet</span>
+                    <i data-feather="book-open"></i> <span>Lecture Sheet</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
@@ -241,6 +270,9 @@ $route=Route::current()->getName();
                     <li><a href="{{route('course.view')}}"><i class="ti-more"></i>Lecture Sheet</a></li>
                 </ul>
             </li>
+
+             
+
             @endif
 
 
@@ -253,9 +285,9 @@ $route=Route::current()->getName();
             @if(Auth::user()->role=='Student')
 
             <li class="header nav-small-cap">Student Interface</li>
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/profile')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="user"></i>
 
                     <span>Profile</span>
                     <span class="pull-right-container">
@@ -270,9 +302,9 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/payment')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="credit-card"></i>
 
                     <span>Finance</span>
                     <span class="pull-right-container">
@@ -281,16 +313,16 @@ $route=Route::current()->getName();
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{route('student.payment.view')}}"><i class="ti-more"></i>View Payment & Invoice</a></li>
-                    <li><a href="{{route('example.example1')}}"><i class="ti-more"></i>Make Payment</a></li>
+                    <li><a href="{{route('example.example2')}}"><i class="ti-more"></i>Make Payment</a></li>
                 </ul>
             </li>
 
 
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/scholarship')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="award"></i>
 
                     <span>Scholarship Information </span>
                     <span class="pull-right-container">
@@ -305,9 +337,9 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/attendence')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="check-square"></i>
 
                     <span>View Attendance</span>
                     <span class="pull-right-container">
@@ -320,9 +352,9 @@ $route=Route::current()->getName();
             </li>
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/student')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="book-open"></i>
 
                     <span>View Class Sheet</span>
                     <span class="pull-right-container">
@@ -336,9 +368,9 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/test')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="edit"></i>
 
                     <span>Online Test</span>
                     <span class="pull-right-container">
@@ -352,9 +384,9 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/reports')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="file-text"></i>
 
                     <span>Reports & Transcripts</span>
                     <span class="pull-right-container">
@@ -379,12 +411,12 @@ $route=Route::current()->getName();
 
     <!--------------------- /.Accounts Section-------------------------------->
 
-            @if(Auth::user()->role=='Admin')
+            @if(Auth::user()->role=='Accountant')
 
             <li class="header nav-small-cap">Accountant Interface</li>
             <li class="treeview  {{($prefix=='/profile')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="user"></i>
 
                     <span>Profile</span>
                     <span class="pull-right-container">
@@ -399,9 +431,9 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/payment')?'active':''}}">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="credit-card"></i>
 
                     <span>Finance</span>
                     <span class="pull-right-container">
@@ -416,9 +448,9 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
-            <li class="treeview ">
+            <li class="treeview {{($prefix=='/scholarship')?'active':''}} ">
                 <a href="#">
-                    <i data-feather="message-circle"></i>
+                    <i data-feather="award"></i>
 
                     <span>Scholarship</span>
                     <span class="pull-right-container">
@@ -465,7 +497,6 @@ $route=Route::current()->getName();
         <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="Email"><i
                 class="ti-email"></i></a>
         <!-- item-->
-        <a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i
-                class="ti-lock"></i></a>
+        <a href="{{route('admin.logout')}}" class="link" data-toggle="tooltip" title="" data-original-title="Logout"><i data-feather="log-out"></i></a>
     </div>
 </aside>
