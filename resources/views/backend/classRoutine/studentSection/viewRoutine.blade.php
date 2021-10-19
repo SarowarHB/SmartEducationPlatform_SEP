@@ -18,14 +18,15 @@
 
 			 <div class="box">
 				<div class="box-header with-border">
-				  <h3 class="box-title">Class Routine List </h3>
+				  <h3 class="box-title">Class Routine </h3><br></br>
+				  <h3 class="box-title">Batch:{{ $alldata['student_class']['className']}} </h3>
 	                
 
 				</div>
 				
 			
                 <img src="{{ (!empty($alldata->file))? url('upload/classRoutine/'.$alldata->file):url('upload/no_image.jpg') }}"
-                                            style="width: 100px; width: 100px;">
+                                            style="width: 100%; height: 85%;">
 
                 
 							 

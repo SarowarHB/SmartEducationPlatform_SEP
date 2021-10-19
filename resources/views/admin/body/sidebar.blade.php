@@ -368,17 +368,17 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview {{($prefix=='/test')?'active':''}}">
+            <li class="treeview {{($prefix=='/routine')?'active':''}}">
                 <a href="#">
                     <i data-feather="edit"></i>
 
-                    <span>Online Test</span>
+                    <span>Class Routine</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-right pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href=""><i class="ti-more"></i>Attend Online Test</a></li>
+                    <li><a href="{{route('student.class.routine.view')}}"><i class="ti-more"></i>View Class Routine </a></li>
                 </ul>
             </li>
 

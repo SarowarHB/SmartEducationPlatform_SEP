@@ -33,7 +33,7 @@
 				<th>Department Name</th>
 				<th>Year Name</th>
                 <th width="20%">File</th>
-				<th width="20%">Action</th>
+				<th width="10%">Action</th>
 				 
 			</tr>
 		</thead>
@@ -46,17 +46,13 @@
                 <td> {{ $value['group']['departmentName']}}</td>	
 				<td> 
                 <img src="{{ (!empty($value->file))? url('upload/classRoutine/'.$value->file):url('upload/no_image.jpg') }}"
-                                            style="width: 100px; width: 100px;">
+                                            style="width: 200px; width: 200px;">
 
                 </td>
 				 		 
 				<td>
                    <a href="{{ route('class.routine.edit',$value->id) }}" class="btn btn-info">Edit</a>
-                  
                    
-
-                       <a href="{{ route('class.routine.details',$value->id) }}" class="btn btn-danger">Details</a>
-
 				</td>
 				 
 			</tr>

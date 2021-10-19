@@ -21,46 +21,46 @@ use Auth;
 
 class AccountsController extends Controller
 {
-    public function RegFeeView(){
-        $dep = Department::all();
-        
-        //$data['years'] = StudentYear::orderBy('id','desc')->get();
-
-        $years = DB::table('student_years')
-        ->orderBy('id', 'desc')
-        ->first();
-
-    	return view('backend.accounts.add_registrationFee',compact('dep','years'));
+    public function RegFeeView(){     
+    	return view('backend.accounts.add_registrationFee');
         
     }
 
     public function RegFeeAdd(Request $request)
     {
-        $department_id = $request->id;
         
     	$id_no = $request->id_no;
-      
-        $year_id= $request->year_id;
 
         $std_id = DB::table('users')->where('id_no', $id_no)->value('id');
 
-        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
-        //dd($class_id);
+        if( $std_id != NULL){
 
-        $editData= AssignStudent::with(['student','student_class','student_year','group'])
-        ->where('student_id',$std_id)->first();
-         //dd($editData);
-        
+            $editData= AssignStudent::with(['student','student_class','student_year','group'])
+            ->where('student_id',$std_id)->first();
 
-        $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
-        ->where('class_id',$class_id)
-        ->value('amount');
-        
-        
-        
+            $department_id = $editData->department_id;
+            $year_id = $editData->year_id;
+            $class_id = $editData->class_id;
+            
 
-        return view('backend.accounts.enter_regFee',compact('editData','amounts','std_id','id_no','year_id','class_id','department_id'));
-   
+            $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
+            ->where('class_id',$class_id)
+            ->value('amount');
+            
+            
+            
+
+            return view('backend.accounts.enter_regFee',compact('editData','amounts','std_id','id_no','year_id','class_id','department_id'));
+        }   
+
+        else{
+            $notification = array(
+                'message' => 'Student Not Found',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->route('payment.view')->with($notification);
+        }
 
     }
 
@@ -108,60 +108,63 @@ class AccountsController extends Controller
     }
 
     public function semesterFeeView(){
-
-        $dep = Department::all();
-        
-        //$data['years'] = StudentYear::orderBy('id','desc')->get();
-
-        $years = DB::table('student_years')
-        ->orderBy('id', 'desc')
-        ->first();
-
-    	return view('backend.accounts.semesterFee.add_semesterFee',compact('dep','years'));      
+    	return view('backend.accounts.semesterFee.add_semesterFee');      
 
     }
 
     public function semesterFeeAdd(Request $request){
 
-        $department_id = $request->id;
+       
     	$id_no = $request->id_no;
-        $year_id= $request->year_id;
+      
 
         $std_id = DB::table('users')->where('id_no', $id_no)->value('id');
-        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
-        //dd($class_id);
 
-        $editData= AssignStudent::with(['student','student_class','student_year','group'])
-        ->where('student_id',$std_id)->first();
-       
+        if( $std_id != NULL){
+
+            $editData= AssignStudent::with(['student','student_class','student_year','group'])
+            ->where('student_id',$std_id)->first();
+
+            $department_id = $editData->department_id;
+            $year_id = $editData->year_id;
+            $class_id = $editData->class_id;
+ 
+            $studentData= Advising::with(['subject'])
+            ->where('student_id',$std_id)
+            ->where('year_id',$year_id)
+            ->where('department_id',$department_id)
+            ->where('class_id',$class_id)->get();
+            //dd($editData->toArray());
+            
+
+            $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
+            ->where('class_id',$class_id)->where('fee_category_id','2')
+            ->value('amount');
+            //dd($amounts);
+
+            $paymentamount = DB::table('payments')
+            ->where('student_id',$std_id)
+            ->where('year_id',$year_id)
+            ->where('department_id',$department_id)
+            ->where('class_id',$class_id)
+            ->where('fee_category_id','2')
+            ->get();
+            
+
+            return view('backend.accounts.semesterFee.enter_semesterFee',
+            compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount'));
+        }
 
 
-         $studentData= Advising::with(['subject'])
-         ->where('student_id',$std_id)
-         ->where('year_id',$year_id)
-         ->where('department_id',$department_id)
-         ->where('class_id',$class_id)->get();
-        //dd($editData->toArray());
-        
+        else {
+            $notification = array(
+                'message' => 'Student Not Found',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->back()->with($notification);
 
-        $amounts = DB::table('fee_amount_categories')->where('department_id',$department_id)
-        ->where('class_id',$class_id)->where('fee_category_id','2')
-        ->value('amount');
-        //dd($amounts);
-
-        $paymentamount = DB::table('payments')
-        ->where('student_id',$std_id)
-        ->where('year_id',$year_id)
-        ->where('department_id',$department_id)
-        ->where('class_id',$class_id)
-        ->where('fee_category_id','2')
-        ->get();
-        
-        
-        
-
-        return view('backend.accounts.semesterFee.enter_semesterFee',
-        compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount'));
+        }
     }
 
     public function semesterStore(Request $request){
@@ -208,32 +211,30 @@ class AccountsController extends Controller
 
 
     public function paymentView(){
-        $dep = Department::all();
-        
-        //$data['years'] = StudentYear::orderBy('id','desc')->get();
-
-        $years = DB::table('student_years')
-        ->orderBy('id', 'asc')
-        ->first();
-
-    	return view('backend.accounts.ViewPayment.searchPayment',compact('dep','years'));
+    	return view('backend.accounts.ViewPayment.searchPayment');
      
     }
 
+
     public function paymentDetilesView(Request $request){
-
-
-        $department_id = $request->id;
+       
     	$id_no = $request->id_no;
-        $year_id= $request->year_id;
 
         $std_id = DB::table('users')->where('id_no', $id_no)->value('id');
-        $class_id = DB::table('assign_students')->where('student_id', $std_id)->value('class_id');
-        //dd($class_id);
+
+        
+
+
+        if( $std_id != NULL){
 
         $editData= AssignStudent::with(['student','student_class','student_year','group'])
         ->where('student_id',$std_id)->first();
-       
+
+        $department_id = $editData->department_id;
+        $year_id = $editData->year_id;
+        $class_id = $editData->class_id;
+        //dd($class_id);
+      
 
 
          $studentData= Advising::with(['subject'])
@@ -268,6 +269,19 @@ class AccountsController extends Controller
 
         return view('backend.accounts.ViewPayment.viewPayment',
         compact('editData','amounts','std_id','id_no','year_id','class_id','department_id','studentData','paymentamount','data','last_date'));
+
+        }
+        else{
+
+            $notification = array(
+                'message' => 'Student Not Found',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->route('payment.view')->with($notification);
+        }
+
+        
 
     }
 
@@ -330,29 +344,33 @@ class AccountsController extends Controller
 
     public function studentScholarshipView(){
 
-        $dep = Department::all();
-        
-        //$data['years'] = StudentYear::orderBy('id','desc')->get();
-
-
-    	return view('backend.accounts.schollership.view_student',compact('dep'));
+    	return view('backend.accounts.schollership.view_student');
     }
 
     public function studentScholarshipUpdate(Request $request){
 
-        $department_id = $request->id;
     	$id_no = $request->id_no;
 
         $student_id = DB::table('users')->where('id_no', $id_no)->value('id');
 
+        if( $student_id != NULL){
+
         $data['years'] = StudentYear::all();
         $data['classes'] = StudentClass::all();
-       
-        
 
         $data['editData'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
          
         return view('backend.accounts.schollership.update_scholarship',$data);
+        }
+        else{
+            $notification = array(
+                'message' => 'Student Not Found',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->back()->with($notification);
+
+        }
     }
 
     public function studentScholarshipStore(Request $request){

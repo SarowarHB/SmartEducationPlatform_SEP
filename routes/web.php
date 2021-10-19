@@ -373,7 +373,7 @@ Route::prefix('routine')->group(function(){
         Route::post('update/store/{id}', [ClaassRoutineController::class, 'StudentRoutineUpdate'])->name('class.routine.update');
 
         //Scholarship detailes Routes 
-        Route::get('view/{$id}', [ClaassRoutineController::class, 'RoutineView'])->name('class.routine.details');
+        Route::get('batchWise/view', [ClaassRoutineController::class,'RoutineView'])->name('class.student.routine.details');
              
      
 }); 

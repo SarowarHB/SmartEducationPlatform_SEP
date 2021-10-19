@@ -120,10 +120,23 @@ class ClaassRoutineController extends Controller
 
     }
 
-    public function RoutineView($id) {
+    public function RoutineView() {
 
-        $data['alldata']=ClassRoutine::find($id);
-        dd($data);
+        $id=Auth::user()->id;
+        //dd($id);
+        $year=AssignStudent::where('student_id',$id)->first();
+        $year_id=$year->year_id;
+        //dd($year_id);
+        $department_id=$year->department_id;
+        //dd($department_id);
+        $class_id=$year->class_id;
+        //dd($class_id);
+
+        $data['alldata']=ClassRoutine::where('class_id',$class_id)
+        ->where('department_id',$department_id)
+        ->where('year_id',$year_id)->first() ;
+
+        //dd($data);
         return view('backend.classRoutine.studentSection.viewRoutine',$data);
     }
 }
