@@ -113,6 +113,10 @@ class TeachersCourseController extends Controller
 
     public function LectureStore(Request $request,$subject_id){
    
+                $id=Auth::user()->id;
+                $year=StudentYear::select('id')->orderBy('id','desc')->first();
+                $year_id=$year->id;
+
                 $addLecture = new CourseSheet();
 
                 $addLecture->teacher_id= $id;

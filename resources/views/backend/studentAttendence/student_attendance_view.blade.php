@@ -39,19 +39,25 @@
                                     </thead>
                                     <tbody>
                                         @foreach($allData as $key => $value )
+                                          @foreach($subjects as $key => $subject )
+                                            @if($value->subject_id==$subject->subject_id)
+
                                         <tr>
+
                                             <td>{{ $key+1 }}</td>
                                             <td> {{ $value['assign_subject']['subjectName'] }}</td>
                                             <td> {{ date('d-m-Y', strtotime($value->date))  }}</td>
 
                                             <td>
-                                                
-                                                <a href="{{url('attendence/teacher/details/'.$value->subject_id.'/'.$value->date)}}"
-                                                    class="btn btn-info">Details</a>
+                                                    
+                                                    <a href="{{url('attendence/teacher/details/'.$value->subject_id.'/'.$value->date)}}"
+                                                        class="btn btn-info">Details</a>
 
                                             </td>
 
                                         </tr>
+                                        @endif
+                                        @endforeach
                                         @endforeach
 
                                     </tbody>

@@ -30,6 +30,9 @@ use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\backend\classRoutine\ClaassRoutineController;
 
 
+Route::group(['middleware' => 'prevent-back-history'],function(){
+   
+  
 
 Route::get('/', function () {
     return view('auth.login');
@@ -40,11 +43,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $id=Auth::user()->id;
     $data=User::find($id);
    
-
     return view('admin.index',compact('data'));
 })->name('dashboard');
 
+
 Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
+
+
+Route::group(['middleware' => 'auth'],function(){
 
 //User Routes
 
@@ -395,5 +401,8 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
+});
+//Auth Middleware end 
          
-        
+});
+//PreventBackHistory Middleware end      

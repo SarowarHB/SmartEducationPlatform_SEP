@@ -271,6 +271,20 @@ $route=Route::current()->getName();
                 </ul>
             </li>
 
+             <!-- /.View Result--->
+
+             <li class="treeview {{($prefix=='/reports')?'active':''}}">
+                <a href="#">
+                    <i data-feather="file-text"></i> <span>View Result</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('marksheet.generate.view')}}"><i class="ti-more"></i>View Result</a></li>
+                </ul>
+            </li>
+
              
 
             @endif

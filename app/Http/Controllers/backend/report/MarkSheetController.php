@@ -37,6 +37,10 @@ class MarkSheetController extends Controller
     
 
         $std_id = DB::table('users')->where('id_no', $id_no)->value('id');
+
+        if($std_id != NULL){
+
+        
         //dd($std_id);
     	
 
@@ -52,6 +56,15 @@ class MarkSheetController extends Controller
 
 
     return view('backend.transcripts.view_transcript',$data);
+        }
+        else{
+            $notification= array(
+                'message' =>'Student Not Found',
+                'alert-type'=>'error'
+            );
+           
+            return Redirect()->route('marksheet.generate.view')->with($notification);
+        }
 
    
     }

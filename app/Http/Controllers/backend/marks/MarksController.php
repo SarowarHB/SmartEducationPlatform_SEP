@@ -15,8 +15,10 @@ use App\Models\ExamType;
 use App\Models\Subject;
 use App\Models\Advising;
 use App\Models\StudentsMarks;
+use App\Models\TeachersCourse;
 use DB;
 use PDF;
+use Auth;
 
 class MarksController extends Controller
 {
@@ -25,7 +27,9 @@ class MarksController extends Controller
         $data['years'] = StudentYear::all();
     	$data['classes'] = StudentClass::all();
     	$data['exam_types'] = ExamType::all();
-        $data['all_subjects'] = Subject::all();
+       
+        $id=Auth::user()->id;
+        $data['subjects']= TeachersCourse::select('subject_id')->where('teacher_id',$id)->get();
         $data['all_departments'] = Department::all();
         
 
@@ -42,12 +46,7 @@ class MarksController extends Controller
 
 
                 $data['examId'] =  $request->exam_type_id;
-                
-
-                
-
-                
-
+ 
                 return view('backend.studentManagent.marrksManagement.marks_entry',$data);
               
 

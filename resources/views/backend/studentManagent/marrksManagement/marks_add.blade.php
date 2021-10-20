@@ -96,6 +96,12 @@
                                                     class="form-control">
                                                     <option selected="">Select Subject</option>
 
+                                                    @foreach($subjects as $subject)
+                                                    <option value="{{ $subject->subject_id }}">{{ $subject['subject']['subjectName']}}</option>
+                                                    @endforeach
+                                                    
+                                                    
+
 
                                                 </select>
                                             </div>
@@ -211,29 +217,6 @@
 </script>
 
 
-<!--   // for get Student Subject  -->
-
-<script type="text/javascript">
-    $(function () {
-        $(document).on('change', '#id', function () {
-            var id = $('#id').val();
-            $.ajax({
-                url: "{{ route('marks.getsubject') }}",
-                type: "GET",
-                data: {
-                    id: id
-                },
-                success: function (data) {
-                    var html = '<option value="">Select Subject</option>';
-                    $.each(data, function (key, v) {
-                        html += '<option value="' + v.id + '">' + v.subjectName + '</option>';
-                    });
-                    $('#assign_subject_id').html(html);
-                }
-            });
-        });
-    });
-</script>
 
 
 

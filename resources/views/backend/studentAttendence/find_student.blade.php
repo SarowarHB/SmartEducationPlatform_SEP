@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="box bb-3 border-warning">
                         <div class="box-header">
-                            <h4 class="box-title">Student <strong>Result View</strong></h4>
+                            <h4 class="box-title">Student <strong>Attendance</strong></h4>
                         </div>
 
                         <div class="box-body">
@@ -31,7 +31,7 @@
                                             <h5>Semester <span class="text-danger"> </span></h5>
                                             <div class="controls">
                                                 <select name="year_id"  required="" class="form-control">
-                                                    <option value="" selected="" disabled="">Select Department</option>
+                                                    <option value="" selected="" disabled="">Select Year</option>
                                                     @foreach($years as $year)
                                                     <option value="{{ $year->id }}">
                                                         {{ $year->yearName}}</option>
@@ -50,10 +50,10 @@
                                             <h5>Subject <span class="text-danger"> </span></h5>
                                             <div class="controls">
                                                 <select name="subject_id"  required="" class="form-control">
-                                                    <option value="" selected="" disabled="">Select Department</option>
+                                                    <option value="" selected="" disabled="">Select Subject</option>
                                                     @foreach($subjects as $subject)
-                                                    <option value="{{ $subject->id }}">
-                                                        {{ $subject->subjectName}}</option>
+                                                    <option value="{{ $subject->subject_id }}">
+                                                        {{ $subject['subject']['subjectName']}}</option>
                                                     @endforeach
 
                                                 </select>

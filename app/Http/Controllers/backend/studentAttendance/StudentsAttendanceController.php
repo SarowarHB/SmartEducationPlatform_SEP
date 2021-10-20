@@ -18,6 +18,7 @@ use App\Models\User;
 use App\Models\InstallmentDate;
 use App\Models\Subject;
 use App\Models\StudentAttendance;
+use App\Models\TeachersCourse;
 use DB;
 use Auth;
 use PDF;
@@ -27,28 +28,40 @@ use PDF;
 class StudentsAttendanceController extends Controller
 {
     public function AttendanceView(){
-        $data['allData'] = StudentAttendance::select('subject_id','date')->groupBy('subject_id','date')->orderBy('id','DESC')->get();
-    	
         
-        // $data['allData'] = EmployeeAttendance::orderBy('id','DESC')->get();
+        $id=Auth::user()->id;
+        
+        $data['subjects']= TeachersCourse::select('subject_id')->where('teacher_id',$id)->get();
+
+        $data['allData'] = StudentAttendance::select('subject_id','date')
+        ->groupBy('subject_id','date')->orderBy('id','DESC')->get();
+    	
     	return view('backend.studentAttendence.student_attendance_view',$data);
 
     }
 
     public function AttendanceFind(){
 
+        $id=Auth::user()->id;
+
+        
         $data['years']= StudentYear::all();
-        $data['subjects']= Subject::all();
+        $data['subjects']= TeachersCourse::select('subject_id')->where('teacher_id',$id)->get();
+        //dd($data);
 
 
     	return view('backend.studentAttendence.find_student',$data);
     }
 
     public function AttendanceAdd(Request $request){
+
         $year_id=$request->year_id;
+        //dd($year_id);
         $subject_id=$request->subject_id;
+        //dd($subject_id);
 
         $data['students']=Advising::where('year_id',$year_id)->where('subject_id',$subject_id)->get();
+        //dd($data);
         return view('backend.studentAttendence.student_attendance_add',$data);
     }
 
