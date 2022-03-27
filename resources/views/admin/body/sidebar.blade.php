@@ -382,22 +382,6 @@ $route=Route::current()->getName();
 
 
 
-            <li class="treeview {{($prefix=='/routine')?'active':''}}">
-                <a href="#">
-                    <i data-feather="edit"></i>
-
-                    <span>Class Routine</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-right pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{route('student.class.routine.view')}}"><i class="ti-more"></i>View Class Routine </a></li>
-                </ul>
-            </li>
-
-
-
             <li class="treeview {{($prefix=='/reports')?'active':''}}">
                 <a href="#">
                     <i data-feather="file-text"></i>
